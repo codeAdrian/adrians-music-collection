@@ -17,7 +17,7 @@ const Sidebar = ({
 }) => (
     <aside className="albumWrapper__sidebar">
         <img
-            src={`/images/cover/${cover}`}
+            src={`https://res.cloudinary.com/adrianbece/image/upload/c_scale,h_900,w_900/music/${cover}`}
             alt={` ${artists_sort} - ${title} cover artwork`}
         />
         {isLoading ? (
