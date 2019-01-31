@@ -1,14 +1,12 @@
-body {
-  margin: 0;
-  padding: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
+@import '/css/variables.pcss';
+@import '/css/page.pcss';
+@import '/css/header.pcss';
+@import '/css/media.pcss';
+@import '/css/button.pcss';
+@import '/css/footer.pcss';
+@import '/css/card.pcss';
+@import '/css/loading.pcss';
+@import '/css/search.pcss';
+@import '/css/album.pcss';
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
-}
+@lost flexbox flex;
