@@ -1,6 +1,3 @@
-import { Interface } from 'readline';
-import { string } from 'prop-types';
-
 export interface AlbumDetails {
     artists_sort: string;
     extraartists: Artist[];

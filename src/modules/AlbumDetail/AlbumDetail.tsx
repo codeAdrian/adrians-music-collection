@@ -32,13 +32,16 @@ const AlbumDetail = ({ match }: AlbumProps): JSX.Element => {
         if (albumsQueryApi.isLoading) {
             const firebaseRef: firebase.database.Reference = firebase
                 .database()
-                .ref('/albums');
+                .ref('/collection');
 
             firebaseRef
                 .orderByChild('discogsID')
                 .equalTo(id)
                 .once('value')
-                .then(snap => albumsQueryApi.handleFetch(snap.val()[0]));
+                .then(snap => {
+                    const key = Object.keys(snap.val())[0];
+                    albumsQueryApi.handleFetch(snap.val()[key]);
+                });
         }
     }, [albumsQueryApi, id]);
 
@@ -57,6 +60,8 @@ const AlbumDetail = ({ match }: AlbumProps): JSX.Element => {
         extraartists
     } = albumDetailApi.apiData;
     const { album, artist, cover, YoutubeVideoID } = albumsQueryApi.apiData;
+
+    console.log('WOOP', albumsQueryApi.apiData);
 
     return (
         <div>
