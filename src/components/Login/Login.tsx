@@ -2,12 +2,11 @@ import React from 'react';
 import { Form, Field } from 'react-final-form';
 
 interface LoginProps {
-    setIsSignedIn: (
-        state: boolean
-    ) => React.Dispatch<React.SetStateAction<boolean>>;
+    setIsSignedIn: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const Login = ({ setIsSignedIn }: LoginProps) => {
+const Login = ({ setIsSignedIn }: LoginProps): JSX.Element => {
+    setIsSignedIn(false);
     return <div>Login</div>;
 };
 
