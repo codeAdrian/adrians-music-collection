@@ -6,7 +6,7 @@ export interface Album {
     discogsID: string;
 }
 
-export type AlbumRenderer = (Album) => JSX.Element;
+export type AlbumRenderer = (arg0: Album) => JSX.Element;
 
 export interface Albums {
     [index: number]: Album;

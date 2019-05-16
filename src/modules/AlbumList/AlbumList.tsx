@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import firebase from 'firebaseInit';
 import { Card } from 'components/Card';
+import { BackToTop } from 'components/BackToTop';
 import { useFetchHandler } from 'hooks';
 import { Album, Albums } from 'types';
 
@@ -10,24 +11,31 @@ const AlbumList: React.FC = () => {
     );
 
     const getAlbumData = () => {
-        const firebaseRef: firebase.database.Reference = firebase
-            .database()
-            .ref('/albums');
-        const firebaseCallback = firebaseRef.on('value', snap => {
-            const albumData: Albums = snap
-                .val()
-                .sort((a: Album, b: Album) => a.artist.localeCompare(b.artist));
-            handleFetch(albumData);
-        });
-
-        return function cleanup() {
-            firebaseRef.off('value', firebaseCallback);
-        };
+        if (isLoading) {
+            const firebaseRef: firebase.database.Reference = firebase
+                .database()
+                .ref('/albums');
+            firebaseRef.once('value').then(snap => {
+                const albumData: Albums = snap
+                    .val()
+                    .sort((a: Album, b: Album) =>
+                        a.artist.localeCompare(b.artist)
+                    );
+                handleFetch(albumData);
+            });
+        }
     };
 
     useEffect(getAlbumData, []);
 
-    return <ul>{apiData.map(Card)}</ul>;
+    if (!apiData) return <div>Error</div>;
+
+    return (
+        <div>
+            <ul>{apiData.map(Card)}</ul>
+            <BackToTop />
+        </div>
+    );
 };
 
 export default AlbumList;
