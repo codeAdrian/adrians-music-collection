@@ -59,7 +59,7 @@ const AlbumDetail = ({ match }: AlbumProps): JSX.Element => {
         tracklist,
         extraartists
     } = albumDetailApi.apiData;
-    const { album, artist, cover, YoutubeVideoID } = albumsQueryApi.apiData;
+    const { album, artist, cover, youtubeVideoID } = albumsQueryApi.apiData;
 
     console.log('WOOP', albumsQueryApi.apiData);
 
@@ -89,7 +89,7 @@ const AlbumDetail = ({ match }: AlbumProps): JSX.Element => {
                 listClass='artistList'
                 keys={['name', 'role']}
             />
-            <YoutubeVideo album={album} artist={artist} id={YoutubeVideoID} />
+            <YoutubeVideo album={album} artist={artist} id={youtubeVideoID} />
             <Cover album={album} artist={artist} cover={cover} offset={0} />
         </div>
     );

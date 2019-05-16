@@ -1,5 +1,5 @@
 export interface Album {
-    YoutubeVideoID: string;
+    youtubeVideoID: string;
     album: string;
     artist: string;
     cover: string;
