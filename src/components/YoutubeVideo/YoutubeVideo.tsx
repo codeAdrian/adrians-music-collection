@@ -12,7 +12,6 @@ const YoutubeVideo = ({ artist, album, id }: VideoProps): JSX.Element => (
         data-modestbranding='1'
         data-showinfo='0'
         data-controls='0'
-        data-frameBorder='0'
         data-fs='0'
         title={`Music Video for a song from ${artist} - ${album}`}
     />

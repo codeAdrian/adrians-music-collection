@@ -5,10 +5,3 @@ export interface Album {
     cover: string;
     discogsID: string;
 }
-
-export type AlbumRenderer = (arg0: Album) => JSX.Element;
-
-export interface Albums {
-    [index: number]: Album;
-    map(renderer: AlbumRenderer): JSX.Element[];
-}
