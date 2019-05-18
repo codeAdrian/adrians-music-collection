@@ -1,7 +1,7 @@
 import firebase from 'firebase/app';
 import 'firebase/database';
 import 'firebase/storage';
-
+import 'firebase/auth';
 import { FirebaseOptions } from '@firebase/app-types';
 
 const FIREBASE_CONFIG: FirebaseOptions = {
