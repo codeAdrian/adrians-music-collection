@@ -44,18 +44,24 @@ const Login = ({ setIsSignedIn }: LoginProps): JSX.Element => {
         });
     };
 
-    const getUsernameInput = ({
+    const getEmailInput = ({
         input,
         meta
     }: FieldRenderProps<string, 'email', any>): React.ReactNode => (
-        <Input label='Username' meta={meta} {...input} />
+        <Input label='Email' type='email' meta={meta} required {...input} />
     );
 
     const getPasswordInput = ({
         input,
         meta
     }: FieldRenderProps<string, 'password', any>): React.ReactNode => (
-        <Input label='Password' type='password' meta={meta} {...input} />
+        <Input
+            label='Password'
+            type='password'
+            meta={meta}
+            required
+            {...input}
+        />
     );
 
     return (
@@ -66,7 +72,7 @@ const Login = ({ setIsSignedIn }: LoginProps): JSX.Element => {
                 onSubmit={handleSubmit}
                 render={({ handleSubmit }) => (
                     <form onSubmit={handleSubmit}>
-                        <Fields.email render={getUsernameInput} />
+                        <Fields.email render={getEmailInput} />
                         <Fields.password render={getPasswordInput} />
                         <button type='submit'>Log in</button>
                     </form>
