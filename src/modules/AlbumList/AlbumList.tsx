@@ -1,36 +1,52 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import firebase from 'firebaseInit';
 import { Card } from 'components/Card';
 import { BackToTop } from 'components/BackToTop';
 import { useFetchHandler } from 'hooks';
 import { Album } from 'types';
+import { LoadMore } from 'components/LoadMore';
+
+const PAGE_SIZE = 12;
 
 const AlbumList: React.FC = () => {
-    const { handleFetch, apiData, isLoading } = useFetchHandler<Album[]>([]);
+    const fetchHandlerApi = useFetchHandler<Album[]>([]);
+    const [pageSize, setPageSize] = useState<number>(PAGE_SIZE);
+    const [arrayLength, setArrayLength] = useState<number>(PAGE_SIZE);
+
+    const { handleFetch, apiData, isLoading, setIsLoading } = fetchHandlerApi;
 
     const getAlbumData = () => {
         if (isLoading) {
-            const firebaseRef: firebase.database.Reference = firebase
+            const query = firebase
                 .database()
-                .ref('/collection');
-            firebaseRef.once('value').then(snap => {
-                const albumsArray: Album[] = Object.values(snap.val());
+                .ref('collection')
+                .orderByChild('artist')
+                .limitToFirst(pageSize);
 
-                const albumData: Album[] = albumsArray.sort((a, b) =>
-                    a.artist.localeCompare(b.artist)
-                );
-                handleFetch(albumData);
+            query.once('value', snap => {
+                const albumsArray: Album[] = Object.values(snap.val());
+                handleFetch(albumsArray);
+                setArrayLength(albumsArray.length);
             });
         }
     };
 
-    useEffect(getAlbumData, []);
+    const handleLoadMore = () => {
+        setPageSize(pageSize + PAGE_SIZE);
+        setIsLoading(true);
+    };
+
+    useEffect(getAlbumData, [pageSize, isLoading]);
 
     if (!apiData) return <div>Error</div>;
 
     return (
         <div>
             <ul>{apiData.map(Card)}</ul>
+            <LoadMore
+                disabled={pageSize > arrayLength}
+                callback={handleLoadMore}
+            />
             <BackToTop />
         </div>
     );

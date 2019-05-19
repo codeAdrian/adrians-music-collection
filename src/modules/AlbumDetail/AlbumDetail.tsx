@@ -61,8 +61,6 @@ const AlbumDetail = ({ match }: AlbumProps): JSX.Element => {
     } = albumDetailApi.apiData;
     const { album, artist, cover, youtubeVideoID } = albumsQueryApi.apiData;
 
-    console.log('WOOP', albumsQueryApi.apiData);
-
     return (
         <div>
             <List title={'Genre'} array={styles} listClass='genreList' />

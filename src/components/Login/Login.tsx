@@ -33,7 +33,7 @@ const Login = ({ setIsSignedIn }: LoginProps): JSX.Element => {
 
     const handleSubmit = (values: LoginForm): void => {
         const { email, password } = values;
-        const query = firebase
+        firebase
             .auth()
             .signInWithEmailAndPassword(email, password)
             .catch(error => error);
@@ -42,8 +42,6 @@ const Login = ({ setIsSignedIn }: LoginProps): JSX.Element => {
             console.log('user', user);
             user && setIsSignedIn(true);
         });
-
-        console.log('query', Promise.resolve(query));
     };
 
     const getUsernameInput = ({
@@ -66,15 +64,13 @@ const Login = ({ setIsSignedIn }: LoginProps): JSX.Element => {
             <Form
                 initialValues={{ email: '', password: '' }}
                 onSubmit={handleSubmit}
-                render={({ handleSubmit }) => {
-                    return (
-                        <form onSubmit={handleSubmit}>
-                            <Fields.email render={getUsernameInput} />
-                            <Fields.password render={getPasswordInput} />
-                            <button type='submit'>Log in</button>
-                        </form>
-                    );
-                }}
+                render={({ handleSubmit }) => (
+                    <form onSubmit={handleSubmit}>
+                        <Fields.email render={getUsernameInput} />
+                        <Fields.password render={getPasswordInput} />
+                        <button type='submit'>Log in</button>
+                    </form>
+                )}
             />
         </div>
     );

@@ -12,7 +12,7 @@ const PrivateRoute = ({ children, ...rest }: PrivateRouteProps) => {
     const [isSignedIn, setIsSignedIn] = useState<boolean>(false);
 
     const getRouteComponent = () =>
-        true || isSignedIn ? children : <Login setIsSignedIn={setIsSignedIn} />;
+        isSignedIn ? children : <Login setIsSignedIn={setIsSignedIn} />;
 
     return <Route {...rest} component={getRouteComponent} />;
 };

@@ -5,6 +5,7 @@ export const useFetchHandler = <T>(
 ): {
     handleFetch(response: T): void;
     apiData: T | undefined;
+    setIsLoading: React.Dispatch<React.SetStateAction<boolean>>;
     isLoading: boolean;
 } => {
     const [apiData, setApiData] = useState<T | undefined>(initialData);
@@ -17,6 +18,7 @@ export const useFetchHandler = <T>(
 
     return {
         handleFetch,
+        setIsLoading,
         apiData,
         isLoading
     };
