@@ -59,7 +59,7 @@ export const useFirestore = () => {
     ) {
         const { searchQuery } = values;
         const albumRef = albumCollection
-            .where('artist', '==', searchQuery)
+            .where(FIRESTORE_ARTIST, '==', searchQuery)
             .orderBy('album');
         executeQuery(albumRef, callback);
     }

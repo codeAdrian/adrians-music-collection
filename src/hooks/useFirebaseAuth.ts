@@ -6,9 +6,10 @@ export const useFirebaseAuth = (
 ) => {
     const [activeUser, setActiveUser] = useState<firebase.User | null>(null);
     const [authError, setAuthError] = useState<any>();
+    const firebaseAuth = firebase.auth();
 
     useEffect(() => {
-        const unsubscribe = firebase.auth().onAuthStateChanged(user => {
+        const unsubscribe = firebaseAuth.onAuthStateChanged(user => {
             setActiveUser(user);
             callback && callback(user);
         });
@@ -23,8 +24,7 @@ export const useFirebaseAuth = (
     }
 
     function signOut() {
-        firebase
-            .auth()
+        firebaseAuth
             .signOut()
             .then(() => {
                 setActiveUser(null);
@@ -33,8 +33,7 @@ export const useFirebaseAuth = (
     }
 
     function signIn({ email, password }: { email: string; password: string }) {
-        firebase
-            .auth()
+        firebaseAuth
             .signInWithEmailAndPassword(email, password)
             .catch(error => error);
     }
