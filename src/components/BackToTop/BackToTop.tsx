@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback, DependencyList } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 
 const BackToTop: React.FC = function() {
     const [triggerValue, setTriggerValue] = useState<number>(500);

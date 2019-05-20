@@ -9,7 +9,7 @@ import { LoadMore } from 'components/LoadMore';
 
 const PAGE_SIZE = 12;
 
-const AlbumList: React.FC = () => {
+const AlbumList = () => {
     const fetchHandlerApi = useFetchHandler<Album[]>([]);
     const [pageSize, setPageSize] = useState<number>(PAGE_SIZE);
     const [arrayLength, setArrayLength] = useState<number>(PAGE_SIZE);

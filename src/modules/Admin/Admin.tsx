@@ -69,7 +69,7 @@ const Admin = () => {
             .auth()
             .signOut()
             .then(function() {
-                console.log('SUCCESS');
+                window.location.reload();
             })
             .catch(function(error) {
                 console.log('ERROR', error);

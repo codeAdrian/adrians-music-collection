@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import defineForm from 'react-define-form';
 import { Input } from 'components/Input';
 import { FieldRenderProps } from 'react-define-form';
@@ -20,6 +20,7 @@ interface LoginForm {
 
 const Login = ({ setIsSignedIn }: LoginProps): JSX.Element => {
     setIsSignedIn(false);
+    useEffect(firebaseAuthListener);
 
     return (
         <div>
@@ -38,17 +39,19 @@ const Login = ({ setIsSignedIn }: LoginProps): JSX.Element => {
         </div>
     );
 
+    function firebaseAuthListener() {
+        firebase.auth().onAuthStateChanged(function(user) {
+            console.log('user', user);
+            user && setIsSignedIn(true);
+        });
+    }
+
     function handleSubmit(values: LoginForm) {
         const { email, password } = values;
         firebase
             .auth()
             .signInWithEmailAndPassword(email, password)
             .catch(error => error);
-
-        firebase.auth().onAuthStateChanged(function(user) {
-            console.log('user', user);
-            user && setIsSignedIn(true);
-        });
     }
 
     function getEmailInput({
