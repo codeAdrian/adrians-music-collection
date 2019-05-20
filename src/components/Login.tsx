@@ -1,19 +1,13 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import defineForm from 'react-define-form';
 import { Input } from 'components';
 import { FieldRenderProps } from 'react-define-form';
 import { useFirebaseAuth } from 'hooks';
-import firebase from 'firebaseInit';
 
 const { Form, Fields } = defineForm(f => ({
     email: f<string>(),
     password: f<string>()
 }));
-
-interface LoginForm {
-    email: string;
-    password: string;
-}
 
 const Login = () => {
     const { signIn } = useFirebaseAuth();
@@ -34,14 +28,6 @@ const Login = () => {
             />
         </div>
     );
-
-    function handleSubmit(values: LoginForm) {
-        const { email, password } = values;
-        firebase
-            .auth()
-            .signInWithEmailAndPassword(email, password)
-            .catch(error => error);
-    }
 
     function getEmailInput({
         input,

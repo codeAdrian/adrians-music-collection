@@ -16,7 +16,7 @@ export const useFirebaseAuth = (
             setActiveUser(null);
             unsubscribe();
         };
-    }, []);
+    }, [callback]);
 
     function handleAuthError(error: any) {
         setAuthError(error);

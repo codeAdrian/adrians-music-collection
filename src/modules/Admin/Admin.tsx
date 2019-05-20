@@ -1,6 +1,5 @@
 import React from 'react';
 import defineForm from 'react-define-form';
-import { Redirect } from 'react-router-dom';
 import { Input } from 'components';
 import { FieldRenderProps } from 'react-define-form';
 import { useFirebaseAuth } from 'hooks';
