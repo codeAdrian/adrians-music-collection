@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, Fragment } from 'react';
 import { useFetchHandler, useFirestore, useDiscogsApi } from 'hooks';
 import { Album, AlbumDetails } from 'types';
 import { Cover, List, YoutubeVideo } from 'components';
@@ -37,7 +37,7 @@ const AlbumDetail = ({ match }: AlbumProps): JSX.Element => {
     } = discogsApi.apiData;
     const { album, artist, cover, youtubeVideoId } = firebaseApi.apiData;
     return (
-        <div>
+        <Fragment>
             <List title={'Genre'} array={styles} listClass='genreList' />
             <List
                 title={'CD Format'}
@@ -64,7 +64,7 @@ const AlbumDetail = ({ match }: AlbumProps): JSX.Element => {
             />
             <YoutubeVideo album={album} artist={artist} id={youtubeVideoId} />
             <Cover album={album} artist={artist} cover={cover} offset={0} />
-        </div>
+        </Fragment>
     );
 
     function parseDiscogsData(response: Response) {

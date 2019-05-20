@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, Fragment } from 'react';
 import { Card, LoadMore, Search, BackToTop } from 'components';
 import { Album } from 'types';
 import { useFirestore, useInfiniteLoader, useFetchHandler } from 'hooks';
@@ -22,7 +22,7 @@ const AlbumList = () => {
     if (!apiData) return <div>Error</div>;
 
     return (
-        <div>
+        <Fragment>
             <Search handleSubmit={searchByArtist} />
             <ul>{apiData.map(Card)}</ul>
             <LoadMore
@@ -30,7 +30,7 @@ const AlbumList = () => {
                 onElementVisible={handleLoadMore}
             />
             <BackToTop />
-        </div>
+        </Fragment>
     );
 
     function parseSearchData(snap: firebase.firestore.QuerySnapshot) {

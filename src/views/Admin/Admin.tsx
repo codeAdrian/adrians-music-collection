@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import defineForm from 'react-define-form';
 import { Input } from 'components';
 import { FieldRenderProps } from 'react-define-form';
@@ -35,7 +35,7 @@ const Admin = () => {
     const { activeUser, signOut } = useFirebaseAuth();
 
     return (
-        <div>
+        <Fragment>
             <button onClick={signOut}>Log out</button>
             <div>Active user: {activeUser && activeUser.email}</div>
             <Form
@@ -52,7 +52,7 @@ const Admin = () => {
                     </form>
                 )}
             />
-        </div>
+        </Fragment>
     );
 
     function handleSubmit(values: AdminFormFields) {
