@@ -1,5 +1,6 @@
 import React from 'react';
 import LazyLoad from 'react-lazy-load';
+import { CLOUDINARY_API, CLOUDINARY_CONFIG, CLOUDINARY_MUSIC } from 'constant';
 
 interface CoverProps {
     offset: number;
@@ -8,13 +9,15 @@ interface CoverProps {
     album: string;
 }
 
-const Cover = ({ offset, cover, artist, album }: CoverProps) => (
-    <LazyLoad offsetVertical={offset}>
-        <img
-            src={`https://res.cloudinary.com/adrianbece/image/upload/c_scale,h_900,w_900/music/${cover}`}
-            alt={` ${artist} - ${album} cover artwork`}
-        />
-    </LazyLoad>
-);
+const Cover = ({ offset, cover, artist, album }: CoverProps) => {
+    const coverUrl = `${CLOUDINARY_API}/${CLOUDINARY_CONFIG}/${CLOUDINARY_MUSIC}/${cover}`;
+    const alt = `${artist} - ${album} cover artwork`;
+
+    return (
+        <LazyLoad offsetVertical={offset}>
+            <img src={coverUrl} alt={alt} />
+        </LazyLoad>
+    );
+};
 
 export { Cover };

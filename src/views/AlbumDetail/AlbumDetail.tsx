@@ -1,8 +1,7 @@
 import React, { useEffect } from 'react';
-import { useFetchHandler, useFirestore } from 'hooks';
+import { useFetchHandler, useFirestore, useDiscogsApi } from 'hooks';
 import { Album, AlbumDetails } from 'types';
 import { Cover, List, YoutubeVideo } from 'components';
-import { useDiscogsApi } from 'hooks';
 
 interface AlbumProps {
     match: {

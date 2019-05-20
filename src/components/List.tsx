@@ -41,11 +41,11 @@ const List = ({ array, listClass, keys, title }: ListProps) => {
         });
     }, [array, listClass, keys]);
 
-    const processedArray = processArray();
-
     if (array.length === 0) {
         return null;
     }
+
+    const processedArray = processArray();
 
     return (
         <div>

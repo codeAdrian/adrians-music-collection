@@ -3,10 +3,10 @@ import { isInViewport } from 'utils';
 
 interface loadMoreProps {
     onElementVisible: () => void;
-    disabled: boolean;
+    canLoadMore: boolean;
 }
 
-const LoadMore = ({ onElementVisible, disabled }: loadMoreProps) => {
+const LoadMore = ({ onElementVisible, canLoadMore }: loadMoreProps) => {
     const [debounce, setDebounce] = useState<boolean>(false);
 
     useEffect(() => {
@@ -17,7 +17,7 @@ const LoadMore = ({ onElementVisible, disabled }: loadMoreProps) => {
         };
     });
 
-    if (disabled) {
+    if (!canLoadMore) {
         window.removeEventListener('scroll', scrollListener);
         return <div>No more to load</div>;
     }

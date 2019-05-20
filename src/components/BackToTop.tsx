@@ -22,10 +22,7 @@ const BackToTop: React.FC = function() {
     const activeClassName: 'active' | '' = isActive ? 'active' : '';
 
     return (
-        <button
-            onClick={scrollToTop}
-            className={`button button--top ${activeClassName}`}
-        >
+        <button onClick={scrollToTop} className={activeClassName}>
             BACK TO TOP
         </button>
     );

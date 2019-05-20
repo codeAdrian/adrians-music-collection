@@ -1,5 +1,10 @@
 import firebase from 'firebaseInit';
-import { FIRESTORE_ALBUMS, FIRESTORE_ARTIST } from 'constant';
+import {
+    FIRESTORE_ALBUMS,
+    FIRESTORE_ALBUM,
+    FIRESTORE_ARTIST,
+    FIRESTORE_DISCOGS_ID
+} from 'constant';
 
 interface AdminFormFields {
     artist: string;
@@ -49,7 +54,7 @@ export const useFirestore = () => {
         id: string,
         callback: (snap: firebase.firestore.QuerySnapshot) => void
     ) {
-        const albumRef = albumCollection.where('discogsId', '==', id);
+        const albumRef = albumCollection.where(FIRESTORE_DISCOGS_ID, '==', id);
         executeQuery(albumRef, callback);
     }
 
@@ -60,7 +65,7 @@ export const useFirestore = () => {
         const { searchQuery } = values;
         const albumRef = albumCollection
             .where(FIRESTORE_ARTIST, '==', searchQuery)
-            .orderBy('album');
+            .orderBy(FIRESTORE_ALBUM);
         executeQuery(albumRef, callback);
     }
 
