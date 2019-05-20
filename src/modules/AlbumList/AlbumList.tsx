@@ -18,7 +18,7 @@ const AlbumList: React.FC = () => {
 
     useEffect(getAlbumData, [pageSize, isLoading]);
 
-    if (isLoading) return <div>Loading</div>;
+    if (!apiData && isLoading) return <div>Loading</div>;
 
     if (!apiData) return <div>Error</div>;
 

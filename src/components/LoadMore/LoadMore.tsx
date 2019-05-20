@@ -7,7 +7,6 @@ interface loadMoreProps {
 
 const LoadMore = ({ onElementVisible, disabled }: loadMoreProps) => {
     const [debounce, setDebounce] = useState<boolean>(false);
-    const loadMore = document && document.getElementById('load-more');
 
     useEffect(() => {
         window.addEventListener('scroll', scrollListener);
@@ -33,6 +32,7 @@ const LoadMore = ({ onElementVisible, disabled }: loadMoreProps) => {
 
     function scrollListener() {
         setDebounce(false);
+        const loadMore = document && document.getElementById('load-more');
         const isElementInViewport = loadMore && isInViewport(loadMore);
 
         if (!debounce && isElementInViewport) {

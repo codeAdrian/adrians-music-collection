@@ -11,10 +11,11 @@ interface PrivateRouteProps {
 const PrivateRoute = ({ children, ...rest }: PrivateRouteProps) => {
     const [isSignedIn, setIsSignedIn] = useState<boolean>(false);
 
-    const getRouteComponent = () =>
-        isSignedIn ? children : <Login setIsSignedIn={setIsSignedIn} />;
-
     return <Route {...rest} component={getRouteComponent} />;
+
+    function getRouteComponent() {
+        return isSignedIn ? children : <Login setIsSignedIn={setIsSignedIn} />;
+    }
 };
 
 export default PrivateRoute;
