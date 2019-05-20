@@ -2,8 +2,7 @@ import React from 'react';
 import defineForm from 'react-define-form';
 import { Input } from 'components';
 import { FieldRenderProps } from 'react-define-form';
-import { useFirebaseAuth } from 'hooks';
-import firebase from 'firebaseInit';
+import { useFirebaseAuth, useFirestore } from 'hooks';
 
 const { Form, Fields } = defineForm(f => ({
     artist: f<string>(),
@@ -32,6 +31,7 @@ const initialValues = {
 type FormInput<T extends string | symbol> = FieldRenderProps<string, T, any>;
 
 const Admin = () => {
+    const { addAlbumToCatalog } = useFirestore();
     const { activeUser, signOut } = useFirebaseAuth();
 
     return (
@@ -56,16 +56,7 @@ const Admin = () => {
     );
 
     function handleSubmit(values: AdminFormFields) {
-        const db = firebase.firestore();
-        db.collection('albums')
-            .doc()
-            .set(values)
-            .then(function() {
-                console.log('Document successfully written!');
-            })
-            .catch(function(error) {
-                console.error('Error writing document: ', error);
-            });
+        addAlbumToCatalog(values);
     }
 
     function getArtistField({ input, meta }: FormInput<'artist'>) {

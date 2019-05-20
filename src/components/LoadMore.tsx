@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { isInViewport } from 'utils';
 
 interface loadMoreProps {
     onElementVisible: () => void;
@@ -22,13 +23,6 @@ const LoadMore = ({ onElementVisible, disabled }: loadMoreProps) => {
     }
 
     return <div id='load-more'>Load more</div>;
-
-    function isInViewport(
-        e: HTMLElement,
-        { top, height } = e && e.getBoundingClientRect()
-    ) {
-        return top <= window.innerHeight && top + height >= 0;
-    }
 
     function scrollListener() {
         setDebounce(false);

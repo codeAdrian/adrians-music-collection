@@ -1,18 +1,14 @@
-import React, { lazy, Suspense } from 'react';
+import React, { Suspense } from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import { PrivateRoute } from './PrivateRoute';
+import { moduleImport } from 'utils';
 
-type moduleImportFunction = (module: String) => () => Promise<any>;
-
-const moduleImport: moduleImportFunction = module => () =>
-    import(`modules/${module}`);
-
-const About = lazy(() => import('modules/About'));
-const AlbumDetail = lazy(() => import('modules/AlbumDetail'));
-const AlbumList = lazy(() => import('modules/AlbumList'));
-const Home = lazy(moduleImport('Home'));
-const NotFound = lazy(() => import('modules/NotFound'));
-const Admin = lazy(() => import('modules/Admin'));
+const About = moduleImport('About');
+const AlbumDetail = moduleImport('AlbumDetail');
+const AlbumList = moduleImport('AlbumList');
+const Home = moduleImport('Home');
+const NotFound = moduleImport('NotFound');
+const Admin = moduleImport('Admin');
 
 const Routing = () => (
     <BrowserRouter>

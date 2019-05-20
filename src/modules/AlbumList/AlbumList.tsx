@@ -1,20 +1,21 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { Card, LoadMore, Search, BackToTop } from 'components';
-import { useFetchHandler } from 'hooks';
 import { Album } from 'types';
-import { useFirestore } from 'hooks';
-
-const PAGE_SIZE = 12;
+import { useFirestore, useInfiniteLoader, useFetchHandler } from 'hooks';
+import { PAGE_SIZE } from 'constant';
 
 const AlbumList = () => {
+    const {
+        canLoadMore,
+        currentPageSize,
+        setCurrentPageSize,
+        setArrayLength
+    } = useInfiniteLoader(PAGE_SIZE);
     const { getAlbumCatalog, searchAlbumData } = useFirestore();
     const fetchHandlerApi = useFetchHandler<Album[]>([]);
-    const [pageSize, setPageSize] = useState<number>(PAGE_SIZE);
-    const [arrayLength, setArrayLength] = useState<number>(PAGE_SIZE);
     const { handleFetch, apiData, isLoading, setIsLoading } = fetchHandlerApi;
-    const isDisabled = pageSize > arrayLength;
 
-    useEffect(getAlbumData, [pageSize, isLoading]);
+    useEffect(getAlbumData, [currentPageSize, isLoading]);
 
     if (!apiData && isLoading) return <div>Loading</div>;
 
@@ -24,7 +25,10 @@ const AlbumList = () => {
         <div>
             <Search handleSubmit={searchByArtist} />
             <ul>{apiData.map(Card)}</ul>
-            <LoadMore disabled={isDisabled} onElementVisible={handleLoadMore} />
+            <LoadMore
+                disabled={!canLoadMore}
+                onElementVisible={handleLoadMore}
+            />
             <BackToTop />
         </div>
     );
@@ -46,11 +50,11 @@ const AlbumList = () => {
     }
 
     function getAlbumData() {
-        isLoading && getAlbumCatalog(pageSize, parseAlbumData);
+        isLoading && getAlbumCatalog(currentPageSize, parseAlbumData);
     }
 
     function handleLoadMore() {
-        setPageSize(pageSize + PAGE_SIZE);
+        setCurrentPageSize(currentPageSize + PAGE_SIZE);
         setIsLoading(true);
     }
 };
