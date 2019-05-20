@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Route } from 'react-router-dom';
-import { Login } from 'components/Login';
+import { Login } from 'components';
+import { useFirebaseAuth } from 'hooks';
 
 interface PrivateRouteProps {
     children: JSX.Element;
@@ -9,13 +10,13 @@ interface PrivateRouteProps {
 }
 
 const PrivateRoute = ({ children, ...rest }: PrivateRouteProps) => {
-    const [isSignedIn, setIsSignedIn] = useState<boolean>(false);
+    const { activeUser } = useFirebaseAuth();
 
     return <Route {...rest} component={getRouteComponent} />;
 
     function getRouteComponent() {
-        return isSignedIn ? children : <Login setIsSignedIn={setIsSignedIn} />;
+        return activeUser ? children : <Login />;
     }
 };
 
-export default PrivateRoute;
+export { PrivateRoute };

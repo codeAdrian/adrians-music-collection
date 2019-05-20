@@ -17,4 +17,4 @@ const Cover = ({ offset, cover, artist, album }: CoverProps) => (
     </LazyLoad>
 );
 
-export default Cover;
+export { Cover };

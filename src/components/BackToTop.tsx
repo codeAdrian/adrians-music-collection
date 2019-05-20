@@ -46,4 +46,4 @@ const BackToTop: React.FC = function() {
     }
 };
 
-export default BackToTop;
+export { BackToTop };

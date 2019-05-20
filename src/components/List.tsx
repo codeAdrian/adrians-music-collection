@@ -55,4 +55,4 @@ const List = ({ array, listClass, keys, title }: ListProps) => {
     );
 };
 
-export default List;
+export { List };

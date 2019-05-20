@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Cover } from 'components/Cover';
+import { Cover } from 'components';
 import { Album } from 'types';
 
 const Card = ({ album, artist, cover, discogsId }: Album): JSX.Element => (
@@ -18,4 +18,4 @@ const Card = ({ album, artist, cover, discogsId }: Album): JSX.Element => (
     </li>
 );
 
-export default Card;
+export { Card };

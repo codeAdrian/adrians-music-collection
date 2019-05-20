@@ -42,4 +42,4 @@ const LoadMore = ({ onElementVisible, disabled }: loadMoreProps) => {
     }
 };
 
-export default LoadMore;
+export { LoadMore };

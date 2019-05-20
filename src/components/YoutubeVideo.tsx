@@ -17,4 +17,4 @@ const YoutubeVideo = ({ artist, album, id }: VideoProps) => (
     />
 );
 
-export default YoutubeVideo;
+export { YoutubeVideo };

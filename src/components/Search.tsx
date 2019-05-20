@@ -1,6 +1,6 @@
 import React from 'react';
 import defineForm from 'react-define-form';
-import { Input } from 'components/Input';
+import { Input } from 'components';
 import { FieldRenderProps } from 'react-define-form';
 
 interface SearchProps {
@@ -41,4 +41,4 @@ const Search = ({ handleSubmit }: SearchProps) => {
     }
 };
 
-export default Search;
+export { Search };

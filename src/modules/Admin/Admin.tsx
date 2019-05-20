@@ -1,7 +1,9 @@
 import React from 'react';
 import defineForm from 'react-define-form';
-import { Input } from 'components/Input';
+import { Redirect } from 'react-router-dom';
+import { Input } from 'components';
 import { FieldRenderProps } from 'react-define-form';
+import { useFirebaseAuth } from 'hooks';
 import firebase from 'firebaseInit';
 
 const { Form, Fields } = defineForm(f => ({
@@ -31,9 +33,12 @@ const initialValues = {
 type FormInput<T extends string | symbol> = FieldRenderProps<string, T, any>;
 
 const Admin = () => {
+    const { activeUser, signOut } = useFirebaseAuth();
+
     return (
         <div>
             <button onClick={signOut}>Log out</button>
+            <div>Active user: {activeUser && activeUser.email}</div>
             <Form
                 initialValues={initialValues}
                 onSubmit={handleSubmit}
@@ -61,18 +66,6 @@ const Admin = () => {
             })
             .catch(function(error) {
                 console.error('Error writing document: ', error);
-            });
-    }
-
-    function signOut() {
-        firebase
-            .auth()
-            .signOut()
-            .then(function() {
-                window.location.reload();
-            })
-            .catch(function(error) {
-                console.log('ERROR', error);
             });
     }
 

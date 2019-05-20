@@ -1,11 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import firebase from 'firebaseInit';
-import { Card } from 'components/Card';
-import { Search } from 'components/Search';
-import { BackToTop } from 'components/BackToTop';
+import { Card, LoadMore, Search, BackToTop } from 'components';
 import { useFetchHandler } from 'hooks';
 import { Album } from 'types';
-import { LoadMore } from 'components/LoadMore';
 
 const PAGE_SIZE = 12;
 

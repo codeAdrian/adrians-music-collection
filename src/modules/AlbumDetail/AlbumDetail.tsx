@@ -2,9 +2,7 @@ import React, { useEffect } from 'react';
 import { useFetchHandler } from 'hooks';
 import firebase from 'firebaseInit';
 import { Album, AlbumDetails } from 'types';
-import { Cover } from 'components/Cover';
-import { YoutubeVideo } from 'components/YoutubeVideo';
-import { List } from 'components/List';
+import { Cover, List, YoutubeVideo } from 'components';
 
 const DISCOGS_API_URL = 'https://api.discogs.com/releases/';
 interface AlbumProps {

@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react';
 import defineForm from 'react-define-form';
-import { Input } from 'components/Input';
+import { Input } from 'components';
 import { FieldRenderProps } from 'react-define-form';
+import { useFirebaseAuth } from 'hooks';
 import firebase from 'firebaseInit';
 
 const { Form, Fields } = defineForm(f => ({
@@ -9,25 +10,20 @@ const { Form, Fields } = defineForm(f => ({
     password: f<string>()
 }));
 
-interface LoginProps {
-    setIsSignedIn: React.Dispatch<React.SetStateAction<boolean>>;
-}
-
 interface LoginForm {
     email: string;
     password: string;
 }
 
-const Login = ({ setIsSignedIn }: LoginProps): JSX.Element => {
-    setIsSignedIn(false);
-    useEffect(firebaseAuthListener);
+const Login = () => {
+    const { signIn } = useFirebaseAuth();
 
     return (
         <div>
             Login
             <Form
                 initialValues={{ email: '', password: '' }}
-                onSubmit={handleSubmit}
+                onSubmit={signIn}
                 render={({ handleSubmit }) => (
                     <form onSubmit={handleSubmit}>
                         <Fields.email render={getEmailInput} />
@@ -38,13 +34,6 @@ const Login = ({ setIsSignedIn }: LoginProps): JSX.Element => {
             />
         </div>
     );
-
-    function firebaseAuthListener() {
-        firebase.auth().onAuthStateChanged(function(user) {
-            console.log('user', user);
-            user && setIsSignedIn(true);
-        });
-    }
 
     function handleSubmit(values: LoginForm) {
         const { email, password } = values;
@@ -79,4 +68,4 @@ const Login = ({ setIsSignedIn }: LoginProps): JSX.Element => {
     }
 };
 
-export default Login;
+export { Login };
