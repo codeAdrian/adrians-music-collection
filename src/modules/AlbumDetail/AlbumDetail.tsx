@@ -1,10 +1,9 @@
 import React, { useEffect } from 'react';
-import { useFetchHandler } from 'hooks';
-import firebase from 'firebaseInit';
+import { useFetchHandler, useFirestore } from 'hooks';
 import { Album, AlbumDetails } from 'types';
 import { Cover, List, YoutubeVideo } from 'components';
+import { useDiscogsApi } from 'hooks';
 
-const DISCOGS_API_URL = 'https://api.discogs.com/releases/';
 interface AlbumProps {
     match: {
         params: {
@@ -16,6 +15,8 @@ interface AlbumProps {
 const AlbumDetail = ({ match }: AlbumProps): JSX.Element => {
     const { params } = match;
     const { id } = params;
+    const { fetchReleaseData } = useDiscogsApi();
+    const { getAlbumData } = useFirestore();
     const discogsApi = useFetchHandler<AlbumDetails>();
     const firebaseApi = useFetchHandler<Album>();
 
@@ -36,7 +37,6 @@ const AlbumDetail = ({ match }: AlbumProps): JSX.Element => {
         extraartists
     } = discogsApi.apiData;
     const { album, artist, cover, youtubeVideoId } = firebaseApi.apiData;
-
     return (
         <div>
             <List title={'Genre'} array={styles} listClass='genreList' />
@@ -75,26 +75,16 @@ const AlbumDetail = ({ match }: AlbumProps): JSX.Element => {
     }
 
     function getDiscogsData() {
-        discogsApi.isLoading &&
-            fetch(`${DISCOGS_API_URL}${id}`).then(parseDiscogsData);
+        discogsApi.isLoading && fetchReleaseData(id, parseDiscogsData);
+    }
+
+    function parseAlbumData(snap: firebase.firestore.QuerySnapshot) {
+        const dataArray = snap.docs.map(doc => doc.data())[0] as Album;
+        firebaseApi.handleFetch(dataArray);
     }
 
     function getFirebaseData() {
-        if (firebaseApi.isLoading) {
-            const db = firebase.firestore();
-            const albumRef = db
-                .collection('albums')
-                .where('discogsId', '==', id);
-
-            const getOptions: { source: 'default' } = {
-                source: 'default'
-            };
-
-            albumRef.get(getOptions).then(snap => {
-                const dataArray = snap.docs.map(doc => doc.data())[0] as Album;
-                firebaseApi.handleFetch(dataArray);
-            });
-        }
+        firebaseApi.isLoading && getAlbumData(id, parseAlbumData);
     }
 };
 

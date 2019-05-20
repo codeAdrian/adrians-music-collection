@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import firebase from 'firebaseInit';
 import { Card, LoadMore, Search, BackToTop } from 'components';
 import { useFetchHandler } from 'hooks';
 import { Album } from 'types';
+import { useFirestore } from 'hooks';
 
 const PAGE_SIZE = 12;
 
 const AlbumList = () => {
+    const { getAlbumCatalog, searchAlbumData } = useFirestore();
     const fetchHandlerApi = useFetchHandler<Album[]>([]);
     const [pageSize, setPageSize] = useState<number>(PAGE_SIZE);
     const [arrayLength, setArrayLength] = useState<number>(PAGE_SIZE);
@@ -35,14 +36,7 @@ const AlbumList = () => {
     }
 
     function searchByArtist(values: { searchQuery: string }) {
-        const { searchQuery } = values;
-        const db = firebase.firestore();
-        const albumRef = db
-            .collection('albums')
-            .where('artist', '==', searchQuery)
-            .orderBy('album');
-
-        albumRef.get().then(parseSearchData);
+        searchAlbumData(values, parseSearchData);
     }
 
     function parseAlbumData(snap: firebase.firestore.QuerySnapshot) {
@@ -52,19 +46,7 @@ const AlbumList = () => {
     }
 
     function getAlbumData() {
-        if (!isLoading) return;
-
-        const db = firebase.firestore();
-        const albumRef = db
-            .collection('albums')
-            .orderBy('artist')
-            .limit(pageSize);
-
-        const getOptions: { source: 'default' } = {
-            source: 'default'
-        };
-
-        albumRef.get(getOptions).then(parseAlbumData);
+        isLoading && getAlbumCatalog(pageSize, parseAlbumData);
     }
 
     function handleLoadMore() {
