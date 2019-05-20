@@ -3,9 +3,9 @@ import { Link } from 'react-router-dom';
 import { Cover } from 'components/Cover';
 import { Album } from 'types';
 
-const Card = ({ album, artist, cover, discogsID }: Album): JSX.Element => (
-    <li key={discogsID} className='albumsList__albumCard albumCard'>
-        <Link to={`/album/${discogsID}`}>
+const Card = ({ album, artist, cover, discogsId }: Album): JSX.Element => (
+    <li key={discogsId} className='albumsList__albumCard albumCard'>
+        <Link to={`/album/${discogsId}`}>
             <Cover offset={500} cover={cover} artist={artist} album={album} />
 
             <hr className='albumCard__deco' />

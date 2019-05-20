@@ -30,18 +30,19 @@ const AlbumDetail = ({ match }: AlbumProps): JSX.Element => {
 
     useEffect(() => {
         if (albumsQueryApi.isLoading) {
-            const firebaseRef: firebase.database.Reference = firebase
-                .database()
-                .ref('/collection');
+            const db = firebase.firestore();
+            const albumRef = db
+                .collection('albums')
+                .where('discogsId', '==', id);
 
-            firebaseRef
-                .orderByChild('discogsID')
-                .equalTo(id)
-                .once('value')
-                .then(snap => {
-                    const key = Object.keys(snap.val())[0];
-                    albumsQueryApi.handleFetch(snap.val()[key]);
-                });
+            const getOptions: { source: 'default' } = {
+                source: 'default'
+            };
+
+            albumRef.get(getOptions).then(snap => {
+                const dataArray = snap.docs.map(doc => doc.data())[0] as Album;
+                albumsQueryApi.handleFetch(dataArray);
+            });
         }
     }, [albumsQueryApi, id]);
 
@@ -59,7 +60,7 @@ const AlbumDetail = ({ match }: AlbumProps): JSX.Element => {
         tracklist,
         extraartists
     } = albumDetailApi.apiData;
-    const { album, artist, cover, youtubeVideoID } = albumsQueryApi.apiData;
+    const { album, artist, cover, youtubeVideoId } = albumsQueryApi.apiData;
 
     return (
         <div>
@@ -87,7 +88,7 @@ const AlbumDetail = ({ match }: AlbumProps): JSX.Element => {
                 listClass='artistList'
                 keys={['name', 'role']}
             />
-            <YoutubeVideo album={album} artist={artist} id={youtubeVideoID} />
+            <YoutubeVideo album={album} artist={artist} id={youtubeVideoId} />
             <Cover album={album} artist={artist} cover={cover} offset={0} />
         </div>
     );

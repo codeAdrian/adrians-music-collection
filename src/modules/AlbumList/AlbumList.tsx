@@ -17,16 +17,20 @@ const AlbumList: React.FC = () => {
 
     const getAlbumData = () => {
         if (isLoading) {
-            const query = firebase
-                .database()
-                .ref('collection')
-                .orderByChild('artist')
-                .limitToFirst(pageSize);
+            const db = firebase.firestore();
+            const albumRef = db
+                .collection('albums')
+                .orderBy('artist')
+                .limit(pageSize);
 
-            query.once('value', snap => {
-                const albumsArray: Album[] = Object.values(snap.val());
-                handleFetch(albumsArray);
-                setArrayLength(albumsArray.length);
+            const getOptions: { source: 'default' } = {
+                source: 'default'
+            };
+
+            albumRef.get(getOptions).then(snap => {
+                const dataArray = snap.docs.map(doc => doc.data()) as Album[];
+                setArrayLength(dataArray.length);
+                handleFetch(dataArray);
             });
         }
     };
@@ -39,14 +43,12 @@ const AlbumList: React.FC = () => {
     useEffect(getAlbumData, [pageSize, isLoading]);
 
     if (!apiData) return <div>Error</div>;
+    const isDisabled = pageSize > arrayLength;
 
     return (
         <div>
             <ul>{apiData.map(Card)}</ul>
-            <LoadMore
-                disabled={pageSize > arrayLength}
-                callback={handleLoadMore}
-            />
+            <LoadMore disabled={isDisabled} callback={handleLoadMore} />
             <BackToTop />
         </div>
     );

@@ -1,7 +1,7 @@
 export interface Album {
-    youtubeVideoID: string;
+    youtubeVideoId: string;
     album: string;
     artist: string;
     cover: string;
-    discogsID: string;
+    discogsId: string;
 }
