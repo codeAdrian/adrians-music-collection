@@ -26,7 +26,7 @@ const AlbumList = () => {
             <Search handleSubmit={searchByArtist} />
             <ul>{apiData.map(Card)}</ul>
             <LoadMore
-                canLoadMore={!canLoadMore}
+                canLoadMore={canLoadMore}
                 onElementVisible={handleLoadMore}
             />
             <BackToTop />
