@@ -21,49 +21,6 @@ interface LoginForm {
 const Login = ({ setIsSignedIn }: LoginProps): JSX.Element => {
     setIsSignedIn(false);
 
-    firebase
-        .auth()
-        .signOut()
-        .then(function() {
-            console.log('SUCCESS');
-        })
-        .catch(function(error) {
-            console.log('ERROR', error);
-        });
-
-    const handleSubmit = (values: LoginForm): void => {
-        const { email, password } = values;
-        firebase
-            .auth()
-            .signInWithEmailAndPassword(email, password)
-            .catch(error => error);
-
-        firebase.auth().onAuthStateChanged(function(user) {
-            console.log('user', user);
-            user && setIsSignedIn(true);
-        });
-    };
-
-    const getEmailInput = ({
-        input,
-        meta
-    }: FieldRenderProps<string, 'email', any>): React.ReactNode => (
-        <Input label='Email' type='email' meta={meta} required {...input} />
-    );
-
-    const getPasswordInput = ({
-        input,
-        meta
-    }: FieldRenderProps<string, 'password', any>): React.ReactNode => (
-        <Input
-            label='Password'
-            type='password'
-            meta={meta}
-            required
-            {...input}
-        />
-    );
-
     return (
         <div>
             Login
@@ -80,6 +37,43 @@ const Login = ({ setIsSignedIn }: LoginProps): JSX.Element => {
             />
         </div>
     );
+
+    function handleSubmit(values: LoginForm) {
+        const { email, password } = values;
+        firebase
+            .auth()
+            .signInWithEmailAndPassword(email, password)
+            .catch(error => error);
+
+        firebase.auth().onAuthStateChanged(function(user) {
+            console.log('user', user);
+            user && setIsSignedIn(true);
+        });
+    }
+
+    function getEmailInput({
+        input,
+        meta
+    }: FieldRenderProps<string, 'email', any>) {
+        return (
+            <Input label='Email' type='email' meta={meta} required {...input} />
+        );
+    }
+
+    function getPasswordInput({
+        input,
+        meta
+    }: FieldRenderProps<string, 'password', any>) {
+        return (
+            <Input
+                label='Password'
+                type='password'
+                meta={meta}
+                required
+                {...input}
+            />
+        );
+    }
 };
 
 export default Login;

@@ -1,27 +1,14 @@
 import React, { useEffect, useState } from 'react';
 
 interface loadMoreProps {
-    callback: () => void;
+    onElementVisible: () => void;
     disabled: boolean;
 }
 
-const LoadMore = ({ callback, disabled }: loadMoreProps) => {
+const LoadMore = ({ onElementVisible, disabled }: loadMoreProps) => {
     const [debounce, setDebounce] = useState<boolean>(false);
+    const loadMore = document && document.getElementById('load-more');
 
-    const isInViewport = (
-        e: HTMLElement,
-        { top, height } = e && e.getBoundingClientRect()
-    ): Boolean => top <= window.innerHeight && top + height >= 0;
-
-    const scrollListener = () => {
-        const loadMore = document && document.getElementById('load-more');
-        if (loadMore && !debounce && isInViewport(loadMore)) {
-            setDebounce(true);
-            callback();
-        } else {
-            setDebounce(false);
-        }
-    };
     useEffect(() => {
         window.addEventListener('scroll', scrollListener);
 
@@ -36,6 +23,23 @@ const LoadMore = ({ callback, disabled }: loadMoreProps) => {
     }
 
     return <div id='load-more'>Load more</div>;
+
+    function isInViewport(
+        e: HTMLElement,
+        { top, height } = e && e.getBoundingClientRect()
+    ) {
+        return top <= window.innerHeight && top + height >= 0;
+    }
+
+    function scrollListener() {
+        setDebounce(false);
+        const isElementInViewport = loadMore && isInViewport(loadMore);
+
+        if (!debounce && isElementInViewport) {
+            setDebounce(true);
+            onElementVisible();
+        }
+    }
 };
 
 export default LoadMore;

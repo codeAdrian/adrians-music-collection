@@ -8,15 +8,13 @@ interface CoverProps {
     album: string;
 }
 
-const Cover = ({ offset, cover, artist, album }: CoverProps): JSX.Element => {
-    return (
-        <LazyLoad offsetVertical={offset}>
-            <img
-                src={`https://res.cloudinary.com/adrianbece/image/upload/c_scale,h_900,w_900/music/${cover}`}
-                alt={` ${artist} - ${album} cover artwork`}
-            />
-        </LazyLoad>
-    );
-};
+const Cover = ({ offset, cover, artist, album }: CoverProps) => (
+    <LazyLoad offsetVertical={offset}>
+        <img
+            src={`https://res.cloudinary.com/adrianbece/image/upload/c_scale,h_900,w_900/music/${cover}`}
+            alt={` ${artist} - ${album} cover artwork`}
+        />
+    </LazyLoad>
+);
 
 export default Cover;

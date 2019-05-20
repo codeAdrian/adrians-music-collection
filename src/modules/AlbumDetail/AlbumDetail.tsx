@@ -5,6 +5,8 @@ import { Album, AlbumDetails } from 'types';
 import { Cover } from 'components/Cover';
 import { YoutubeVideo } from 'components/YoutubeVideo';
 import { List } from 'components/List';
+
+const DISCOGS_API_URL = 'https://api.discogs.com/releases/';
 interface AlbumProps {
     match: {
         params: {
@@ -16,42 +18,17 @@ interface AlbumProps {
 const AlbumDetail = ({ match }: AlbumProps): JSX.Element => {
     const { params } = match;
     const { id } = params;
-    const albumDetailApi = useFetchHandler<AlbumDetails>();
-    const albumsQueryApi = useFetchHandler<Album>();
+    const discogsApi = useFetchHandler<AlbumDetails>();
+    const firebaseApi = useFetchHandler<Album>();
 
-    useEffect(() => {
-        albumDetailApi.isLoading &&
-            fetch(`https://api.discogs.com/releases/${id}`).then(response =>
-                response.json().then(response => {
-                    albumDetailApi.handleFetch(response);
-                })
-            );
-    }, [albumDetailApi, id]);
+    useEffect(getDiscogsData, [discogsApi, id]);
+    useEffect(getFirebaseData, [firebaseApi, id]);
 
-    useEffect(() => {
-        if (albumsQueryApi.isLoading) {
-            const db = firebase.firestore();
-            const albumRef = db
-                .collection('albums')
-                .where('discogsId', '==', id);
-
-            const getOptions: { source: 'default' } = {
-                source: 'default'
-            };
-
-            albumRef.get(getOptions).then(snap => {
-                const dataArray = snap.docs.map(doc => doc.data())[0] as Album;
-                albumsQueryApi.handleFetch(dataArray);
-            });
-        }
-    }, [albumsQueryApi, id]);
-
-    const isLoading = albumsQueryApi.isLoading || albumDetailApi.isLoading;
+    const isLoading = firebaseApi.isLoading || discogsApi.isLoading;
 
     if (isLoading) return <div>Loading</div>;
 
-    if (!albumDetailApi.apiData || !albumsQueryApi.apiData)
-        return <div>Error</div>;
+    if (!discogsApi.apiData || !firebaseApi.apiData) return <div>Error</div>;
 
     const {
         styles,
@@ -59,8 +36,8 @@ const AlbumDetail = ({ match }: AlbumProps): JSX.Element => {
         labels,
         tracklist,
         extraartists
-    } = albumDetailApi.apiData;
-    const { album, artist, cover, youtubeVideoId } = albumsQueryApi.apiData;
+    } = discogsApi.apiData;
+    const { album, artist, cover, youtubeVideoId } = firebaseApi.apiData;
 
     return (
         <div>
@@ -92,6 +69,35 @@ const AlbumDetail = ({ match }: AlbumProps): JSX.Element => {
             <Cover album={album} artist={artist} cover={cover} offset={0} />
         </div>
     );
+
+    function parseDiscogsData(response: Response) {
+        return response.json().then(response => {
+            discogsApi.handleFetch(response);
+        });
+    }
+
+    function getDiscogsData() {
+        discogsApi.isLoading &&
+            fetch(`${DISCOGS_API_URL}${id}`).then(parseDiscogsData);
+    }
+
+    function getFirebaseData() {
+        if (firebaseApi.isLoading) {
+            const db = firebase.firestore();
+            const albumRef = db
+                .collection('albums')
+                .where('discogsId', '==', id);
+
+            const getOptions: { source: 'default' } = {
+                source: 'default'
+            };
+
+            albumRef.get(getOptions).then(snap => {
+                const dataArray = snap.docs.map(doc => doc.data())[0] as Album;
+                firebaseApi.handleFetch(dataArray);
+            });
+        }
+    }
 };
 
 export default AlbumDetail;

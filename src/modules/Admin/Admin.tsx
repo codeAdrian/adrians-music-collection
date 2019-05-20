@@ -28,63 +28,12 @@ const initialValues = {
     cover: ''
 };
 
-const Admin: React.FunctionComponent = () => {
-    const handleSubmit = (values: AdminFormFields) => {
-        const db = firebase.firestore();
-        db.collection('albums')
-            .doc()
-            .set(values)
-            .then(function() {
-                console.log('Document successfully written!');
-            })
-            .catch(function(error) {
-                console.error('Error writing document: ', error);
-            });
-    };
+type FormInput<T extends string | symbol> = FieldRenderProps<string, T, any>;
 
-    const getArtistField = ({
-        input,
-        meta
-    }: FieldRenderProps<string, 'artist', any>): React.ReactNode => (
-        <Input label='Artist' required type='text' meta={meta} {...input} />
-    );
-
-    const getAlbumField = ({
-        input,
-        meta
-    }: FieldRenderProps<string, 'album', any>): React.ReactNode => (
-        <Input label='Album' required type='text' meta={meta} {...input} />
-    );
-
-    const getVideoField = ({
-        input,
-        meta
-    }: FieldRenderProps<string, 'youtubeVideoId', any>): React.ReactNode => (
-        <Input
-            label='Youtube Video ID'
-            required
-            type='text'
-            meta={meta}
-            {...input}
-        />
-    );
-
-    const getDiscogsField = ({
-        input,
-        meta
-    }: FieldRenderProps<string, 'discogsId', any>): React.ReactNode => (
-        <Input label='Discogs ID' type='text' required meta={meta} {...input} />
-    );
-
-    const getCoverField = ({
-        input,
-        meta
-    }: FieldRenderProps<string, 'cover', any>): React.ReactNode => (
-        <Input label='Cover' type='text' required meta={meta} {...input} />
-    );
-
+const Admin = () => {
     return (
         <div>
+            <button onClick={signOut}>Log out</button>
             <Form
                 initialValues={initialValues}
                 onSubmit={handleSubmit}
@@ -101,6 +50,73 @@ const Admin: React.FunctionComponent = () => {
             />
         </div>
     );
+
+    function handleSubmit(values: AdminFormFields) {
+        const db = firebase.firestore();
+        db.collection('albums')
+            .doc()
+            .set(values)
+            .then(function() {
+                console.log('Document successfully written!');
+            })
+            .catch(function(error) {
+                console.error('Error writing document: ', error);
+            });
+    }
+
+    function signOut() {
+        firebase
+            .auth()
+            .signOut()
+            .then(function() {
+                console.log('SUCCESS');
+            })
+            .catch(function(error) {
+                console.log('ERROR', error);
+            });
+    }
+
+    function getArtistField({ input, meta }: FormInput<'artist'>) {
+        return (
+            <Input label='Artist' required type='text' meta={meta} {...input} />
+        );
+    }
+
+    function getAlbumField({ input, meta }: FormInput<'album'>) {
+        return (
+            <Input label='Album' required type='text' meta={meta} {...input} />
+        );
+    }
+
+    function getVideoField({ input, meta }: FormInput<'youtubeVideoId'>) {
+        return (
+            <Input
+                label='Youtube Video ID'
+                required
+                type='text'
+                meta={meta}
+                {...input}
+            />
+        );
+    }
+
+    function getDiscogsField({ input, meta }: FormInput<'discogsId'>) {
+        return (
+            <Input
+                label='Discogs ID'
+                type='text'
+                required
+                meta={meta}
+                {...input}
+            />
+        );
+    }
+
+    function getCoverField({ input, meta }: FormInput<'cover'>) {
+        return (
+            <Input label='Cover' type='text' required meta={meta} {...input} />
+        );
+    }
 };
 
 export default Admin;
