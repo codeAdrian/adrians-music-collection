@@ -1,15 +1,7 @@
 import React, { useEffect, Fragment } from 'react';
 import { useFetchHandler, useFirestore, useDiscogsApi } from 'hooks';
-import { Album, AlbumDetails } from 'models';
+import { Album, AlbumDetails, AlbumProps } from 'models';
 import { Cover, List, YoutubeVideo } from 'components';
-
-interface AlbumProps {
-    match: {
-        params: {
-            id: string;
-        };
-    };
-}
 
 const AlbumDetail: React.FC<AlbumProps> = ({ match }: AlbumProps) => {
     const { params } = match;

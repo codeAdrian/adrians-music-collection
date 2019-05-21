@@ -8,6 +8,14 @@ export interface AlbumDetails {
     tracklist: TrackList[];
 }
 
+export interface AlbumProps {
+    match: {
+        params: {
+            id: string;
+        };
+    };
+}
+
 export interface TrackList {
     position: string;
     title: string;

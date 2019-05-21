@@ -3,6 +3,7 @@ import defineForm from 'react-define-form';
 import { Input } from 'components';
 import { FieldRenderProps } from 'react-define-form';
 import { useFirebaseAuth, useFirestore } from 'hooks';
+import { AdminFormFields } from 'models';
 
 const { Form, Fields } = defineForm(f => ({
     artist: f<string>(),
@@ -11,22 +12,6 @@ const { Form, Fields } = defineForm(f => ({
     discogsId: f<string>(),
     cover: f<string>()
 }));
-
-interface AdminFormFields {
-    artist: string;
-    album: string;
-    youtubeVideoId: string;
-    discogsId: string;
-    cover: string;
-}
-
-const initialValues = {
-    artist: '',
-    album: '',
-    youtubeVideoId: '',
-    discogsId: '',
-    cover: ''
-};
 
 type FormInput<T extends string | symbol> = FieldRenderProps<string, T, any>;
 
@@ -39,7 +24,13 @@ const Admin: React.FC = () => {
             <button onClick={signOut}>Log out</button>
             <div>Active user: {activeUser && activeUser.email}</div>
             <Form
-                initialValues={initialValues}
+                initialValues={{
+                    artist: '',
+                    album: '',
+                    youtubeVideoId: '',
+                    discogsId: '',
+                    cover: ''
+                }}
                 onSubmit={handleSubmit}
                 render={({ handleSubmit }) => (
                     <form onSubmit={handleSubmit}>

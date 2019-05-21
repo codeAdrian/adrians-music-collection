@@ -1,11 +1,6 @@
 import React from 'react';
 import { YOUTUBE_EMBED_URL, YOUTUBE_QUERY_VARS } from 'constant';
-
-interface VideoProps {
-    artist: string;
-    album: string;
-    id: string;
-}
+import { VideoProps } from 'models';
 
 const YoutubeVideo: React.FC<VideoProps> = ({ artist, album, id }) => {
     const videoSrc = `${YOUTUBE_EMBED_URL}${id}${YOUTUBE_QUERY_VARS}`;

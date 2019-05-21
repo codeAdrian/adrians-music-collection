@@ -1,10 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { isInViewport } from 'utils';
-
-interface LoadMoreProps {
-    onElementVisible: () => void;
-    canLoadMore: boolean;
-}
+import { LoadMoreProps } from 'models';
 
 const LoadMore: React.FC<LoadMoreProps> = ({
     onElementVisible,

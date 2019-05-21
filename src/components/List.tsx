@@ -1,10 +1,5 @@
 import React, { useCallback } from 'react';
-interface ListProps {
-    array: any[];
-    listClass: string;
-    keys?: string[];
-    title: string;
-}
+import { ListProps } from 'models';
 
 const List: React.FC<ListProps> = ({ array, listClass, keys, title }) => {
     const processArray = useCallback(() => {

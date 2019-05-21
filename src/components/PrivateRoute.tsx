@@ -2,12 +2,7 @@ import React from 'react';
 import { Route } from 'react-router-dom';
 import { Login } from 'components';
 import { useFirebaseAuth } from 'hooks';
-
-interface PrivateRouteProps {
-    children: JSX.Element;
-    exact: boolean;
-    path: string;
-}
+import { PrivateRouteProps } from 'models';
 
 const PrivateRoute: React.FC<PrivateRouteProps> = ({ children, ...rest }) => {
     const { activeUser } = useFirebaseAuth();
