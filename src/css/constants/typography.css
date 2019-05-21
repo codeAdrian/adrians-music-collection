@@ -1,0 +1,14 @@
+@import '../constants/media-queries';
+
+:root {
+    --typography__lineHeight: 1.5;
+    --typography__fontSize--px: 14;
+    --typography__scale: 1.333;
+
+    --typography__weight--normal: 400;
+    --typography__weight--bold: 700;
+
+    @media (--mq__tablet--min) {
+        --typography__fontSize--px: 16;
+    }
+}

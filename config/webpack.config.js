@@ -104,7 +104,7 @@ module.exports = function(webpackEnv) {
                                 'not ie < 10',
                                 'safari >=5'
                             ],
-                            featured: {
+                            features: {
                                 'nesting-rules': true,
                                 'custom-media-queries': true
                             },
