@@ -9,3 +9,8 @@ export { PrivateRoute } from './PrivateRoute';
 export { Routing } from './Routing';
 export { Search } from './Search';
 export { YoutubeVideo } from './YoutubeVideo';
+export { AppLayout } from './AppLayout';
+export { Header } from './Header';
+export { Footer } from './Footer';
+export { Navigation } from './Navigation';
+export { Logo } from './Logo';

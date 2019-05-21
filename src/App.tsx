@@ -1,13 +1,14 @@
 import React from 'react';
-import { Routing } from 'components';
-import styles from './App.module.css';
+import { Routing, AppLayout } from 'components';
+import { BrowserRouter } from 'react-router-dom';
 
 const App: React.FC = () => {
-    console.log('STYLES', styles);
     return (
-        <div className='App-logo'>
-            <Routing />
-        </div>
+        <BrowserRouter>
+            <AppLayout>
+                <Routing />
+            </AppLayout>
+        </BrowserRouter>
     );
 };
 

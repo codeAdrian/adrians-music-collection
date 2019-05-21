@@ -1,4 +1,4 @@
-import firebase from 'firebaseInit';
+import { firebaseInit } from 'modules';
 import {
     FIRESTORE_ALBUMS,
     FIRESTORE_ALBUM,
@@ -15,7 +15,7 @@ interface AdminFormFields {
 }
 
 export const useFirestore = () => {
-    const db = firebase.firestore();
+    const db = firebaseInit.firestore();
     const albumCollection = db.collection(FIRESTORE_ALBUMS);
     const orderedAlbumCollection = albumCollection.orderBy(FIRESTORE_ARTIST);
     const albumCollectionDoc = albumCollection.doc();

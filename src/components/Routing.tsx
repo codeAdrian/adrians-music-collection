@@ -1,5 +1,5 @@
 import React, { Suspense } from 'react';
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { Switch, Route } from 'react-router-dom';
 import { PrivateRoute } from './PrivateRoute';
 import { moduleImport } from 'utils';
 
@@ -11,44 +11,42 @@ const NotFound = moduleImport('NotFound');
 const Admin = moduleImport('Admin');
 
 const Routing: React.FC = () => (
-    <BrowserRouter>
-        <Switch>
-            <PrivateRoute exact path='/admin'>
+    <Switch>
+        <PrivateRoute exact path='/admin'>
+            <Suspense fallback={null}>
+                <Admin />
+            </Suspense>
+        </PrivateRoute>
+        <Route exact path='/about'>
+            <Suspense fallback={null}>
+                <About />
+            </Suspense>
+        </Route>
+        <Route
+            exact
+            path='/album/:id'
+            render={props => (
                 <Suspense fallback={null}>
-                    <Admin />
+                    <AlbumDetail {...props} />
                 </Suspense>
-            </PrivateRoute>
-            <Route exact path='/about'>
-                <Suspense fallback={null}>
-                    <About />
-                </Suspense>
-            </Route>
-            <Route
-                exact
-                path='/album/:id'
-                render={props => (
-                    <Suspense fallback={null}>
-                        <AlbumDetail {...props} />
-                    </Suspense>
-                )}
-            />
-            <Route exact path='/albums'>
-                <Suspense fallback={null}>
-                    <AlbumList />
-                </Suspense>
-            </Route>
-            <Route exact path='/'>
-                <Suspense fallback={null}>
-                    <Home />
-                </Suspense>
-            </Route>
-            <Route>
-                <Suspense fallback={null}>
-                    <NotFound />
-                </Suspense>
-            </Route>
-        </Switch>
-    </BrowserRouter>
+            )}
+        />
+        <Route exact path='/albums'>
+            <Suspense fallback={null}>
+                <AlbumList />
+            </Suspense>
+        </Route>
+        <Route exact path='/'>
+            <Suspense fallback={null}>
+                <Home />
+            </Suspense>
+        </Route>
+        <Route>
+            <Suspense fallback={null}>
+                <NotFound />
+            </Suspense>
+        </Route>
+    </Switch>
 );
 
 export { Routing };
