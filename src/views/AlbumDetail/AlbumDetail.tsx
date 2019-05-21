@@ -1,4 +1,4 @@
-import React, { useEffect, Fragment } from 'react';
+import React, { useEffect, useState, Fragment } from 'react';
 import { useFetchHandler, useFirestore, useDiscogsApi } from 'hooks';
 import { Album, AlbumDetails, AlbumProps } from 'models';
 import { Cover, List, YoutubeVideo } from 'components';
@@ -7,7 +7,8 @@ const AlbumDetail: React.FC<AlbumProps> = ({ match }: AlbumProps) => {
     const { params } = match;
     const { id } = params;
     const { fetchReleaseData } = useDiscogsApi();
-    const { getAlbumData } = useFirestore();
+    const { getAlbumData, searchAlbumData } = useFirestore();
+    const [relatedAlbums, setRelatedAlbums] = useState<Album[]>([]);
     const discogsApi = useFetchHandler<AlbumDetails>();
     const firebaseApi = useFetchHandler<Album>();
 
@@ -27,7 +28,16 @@ const AlbumDetail: React.FC<AlbumProps> = ({ match }: AlbumProps) => {
         tracklist,
         extraartists
     } = discogsApi.apiData;
-    const { album, artist, cover, youtubeVideoId } = firebaseApi.apiData;
+    const {
+        album,
+        discogsId,
+        artist,
+        cover,
+        youtubeVideoId
+    } = firebaseApi.apiData;
+
+    searchAlbumData(artist, parseAlbumsByArtist);
+
     return (
         <Fragment>
             <List title={'Genre'} array={styles} listClass='genreList' />
@@ -58,6 +68,16 @@ const AlbumDetail: React.FC<AlbumProps> = ({ match }: AlbumProps) => {
             <Cover album={album} artist={artist} cover={cover} offset={0} />
         </Fragment>
     );
+
+    function parseAlbumsByArtist(snap: firebase.firestore.QuerySnapshot) {
+        const dataArray = snap.docs
+            .map(doc => doc.data())
+            .filter(album => album.discogsId !== discogsId) as Album[];
+
+        if (dataArray.length > 4) dataArray.length = 4;
+
+        setRelatedAlbums(dataArray);
+    }
 
     function parseDiscogsData(response: Response) {
         return response.json().then(response => {
