@@ -14,3 +14,4 @@ export { Header } from './Header';
 export { Footer } from './Footer';
 export { Navigation } from './Navigation';
 export { Logo } from './Logo';
+export { AlbumList } from './AlbumList';

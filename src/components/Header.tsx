@@ -1,10 +1,11 @@
 import React from 'react';
-import { Navigation, Logo } from 'components';
+import { Navigation, Logo, Search } from 'components';
 
 const Header: React.FC = () => (
     <header>
         <Logo />
         <Navigation />
+        <Search />
     </header>
 );
 

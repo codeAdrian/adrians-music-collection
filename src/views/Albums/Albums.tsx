@@ -1,47 +1,36 @@
 import React, { useEffect, Fragment } from 'react';
-import { Card, LoadMore, Search, BackToTop } from 'components';
+import { LoadMore, BackToTop, AlbumList } from 'components';
 import { Album } from 'models';
 import { useFirestore, useInfiniteLoader, useFetchHandler } from 'hooks';
 import { PAGE_SIZE } from 'constant';
 
-const AlbumList: React.FC = () => {
+const Albums: React.FC = () => {
     const {
         canLoadMore,
         currentPageSize,
         setCurrentPageSize,
         setArrayLength
     } = useInfiniteLoader(PAGE_SIZE);
-    const { getAlbumCatalog, searchAlbumData } = useFirestore();
+    const { getAlbumCatalog } = useFirestore();
     const fetchHandlerApi = useFetchHandler<Album[]>([]);
     const { handleFetch, apiData, isLoading, setIsLoading } = fetchHandlerApi;
 
     useEffect(getAlbumData, [currentPageSize, isLoading]);
 
-    if (!apiData && isLoading) return <div>Loading</div>;
-
+    const noResults = apiData && apiData.length === 0;
+    if ((!apiData || noResults) && isLoading) return <div>Loading</div>;
     if (!apiData) return <div>Error</div>;
 
     return (
         <Fragment>
-            <Search handleSubmit={searchByArtist} />
-            <ul>{apiData.map(Card)}</ul>
+            <AlbumList albums={apiData} />
             <LoadMore
-                canLoadMore={canLoadMore}
+                canLoadMore={isLoading || canLoadMore}
                 onElementVisible={handleLoadMore}
             />
             <BackToTop />
         </Fragment>
     );
-
-    function parseSearchData(snap: firebase.firestore.QuerySnapshot) {
-        const dataArray = snap.docs.map(doc => doc.data()) as Album[];
-        setArrayLength(dataArray.length);
-        handleFetch(dataArray);
-    }
-
-    function searchByArtist(values: { searchQuery: string }) {
-        searchAlbumData(values, parseSearchData);
-    }
 
     function parseAlbumData(snap: firebase.firestore.QuerySnapshot) {
         const dataArray = snap.docs.map(doc => doc.data()) as Album[];
@@ -59,4 +48,4 @@ const AlbumList: React.FC = () => {
     }
 };
 
-export default AlbumList;
+export default Albums;

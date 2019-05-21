@@ -5,10 +5,11 @@ import { moduleImport } from 'utils';
 
 const About = moduleImport('About');
 const AlbumDetail = moduleImport('AlbumDetail');
-const AlbumList = moduleImport('AlbumList');
+const Albums = moduleImport('Albums');
 const Home = moduleImport('Home');
 const NotFound = moduleImport('NotFound');
 const Admin = moduleImport('Admin');
+const Search = moduleImport('Search');
 
 const Routing: React.FC = () => (
     <Switch>
@@ -24,7 +25,7 @@ const Routing: React.FC = () => (
         </Route>
         <Route
             exact
-            path='/album/:id'
+            path='/albums/album/:id'
             render={props => (
                 <Suspense fallback={null}>
                     <AlbumDetail {...props} />
@@ -33,7 +34,12 @@ const Routing: React.FC = () => (
         />
         <Route exact path='/albums'>
             <Suspense fallback={null}>
-                <AlbumList />
+                <Albums />
+            </Suspense>
+        </Route>
+        <Route exact path='/search'>
+            <Suspense fallback={null}>
+                <Search />
             </Suspense>
         </Route>
         <Route exact path='/'>

@@ -5,7 +5,7 @@ import { Album } from 'models';
 
 const Card: React.FC<Album> = ({ album, artist, cover, discogsId }) => (
     <li key={discogsId}>
-        <Link to={`/album/${discogsId}`}>
+        <Link to={`/albums/album/${discogsId}`}>
             <Cover offset={500} cover={cover} artist={artist} album={album} />
 
             <hr />

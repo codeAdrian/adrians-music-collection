@@ -59,10 +59,9 @@ export const useFirestore = () => {
     }
 
     function searchAlbumData(
-        values: { searchQuery: string },
+        searchQuery: string,
         callback: (snap: firebase.firestore.QuerySnapshot) => void
     ) {
-        const { searchQuery } = values;
         const albumRef = albumCollection
             .where(FIRESTORE_ARTIST, '==', searchQuery)
             .orderBy(FIRESTORE_ALBUM);

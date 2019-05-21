@@ -1,20 +1,20 @@
 import React from 'react';
 import defineForm from 'react-define-form';
 import { Input } from 'components';
+import { withRouter } from 'react-router-dom';
 import { FieldRenderProps } from 'react-define-form';
-
-interface SearchProps {
-    handleSubmit: (values: { searchQuery: string }) => void;
-}
 
 const { Form, Fields } = defineForm(f => ({
     searchQuery: f<string>()
 }));
 
-const Search: React.FC<SearchProps> = ({ handleSubmit }) => {
+const Search = withRouter(({ history, location }) => {
+    const params = new URLSearchParams(location.search);
+    const searchQuery = params.get('searchQuery');
+
     return (
         <Form
-            initialValues={{ searchQuery: '' }}
+            initialValues={{ searchQuery: searchQuery || '' }}
             onSubmit={handleSubmit}
             render={({ handleSubmit }) => (
                 <form onSubmit={handleSubmit}>
@@ -24,6 +24,11 @@ const Search: React.FC<SearchProps> = ({ handleSubmit }) => {
             )}
         />
     );
+
+    function handleSubmit(values: { searchQuery: string }) {
+        const newUrl = `/search?searchQuery=${values.searchQuery}`;
+        history.push(newUrl);
+    }
 
     function getSearchInput({
         input,
@@ -39,6 +44,6 @@ const Search: React.FC<SearchProps> = ({ handleSubmit }) => {
             />
         );
     }
-};
+});
 
 export { Search };
