@@ -10,7 +10,7 @@ const LoadMore: React.FC<LoadMoreProps> = ({
     onElementVisible,
     canLoadMore
 }) => {
-    const [debounce, setDebounce] = useState<boolean>(false);
+    const [debounce, setDebounce] = useState(false);
 
     useEffect(() => {
         window.addEventListener('scroll', scrollListener);

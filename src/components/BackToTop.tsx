@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useCallback } from 'react';
 
 const BackToTop: React.FC = function() {
-    const [triggerValue, setTriggerValue] = useState<number>(500);
-    const [isActive, setIsActive] = useState<boolean>(false);
+    const [triggerValue, setTriggerValue] = useState(500);
+    const [isActive, setIsActive] = useState(false);
 
     const handleScroll = useCallback(() => {
         setIsActive(window.pageYOffset > triggerValue);
@@ -32,8 +32,8 @@ const BackToTop: React.FC = function() {
     }
 
     function scrollToTop() {
-        const doc: HTMLElement = document.documentElement;
-        const top: number =
+        const doc = document.documentElement;
+        const top =
             (window.pageYOffset || doc.scrollTop) - (doc.clientTop || 0);
 
         if (top > 0) {

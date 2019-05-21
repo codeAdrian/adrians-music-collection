@@ -14,10 +14,9 @@ const List: React.FC<ListProps> = ({ array, listClass, keys, title }) => {
             ));
         }
 
-        return array.map((element: string, index: number) => {
+        return array.map((element: any, index: number) => {
             let _element = {};
             _element = keys.map((key: string, index: number) => {
-                //@ts-ignore
                 if (!element[key]) {
                     return null;
                 }
@@ -26,10 +25,7 @@ const List: React.FC<ListProps> = ({ array, listClass, keys, title }) => {
                         key={`${listClass}-${key}-${index}`}
                         className={`${listClass}__${key}`}
                     >
-                        {
-                            //@ts-ignore
-                            element[key]
-                        }
+                        {element[key]}
                     </li>
                 );
             });
