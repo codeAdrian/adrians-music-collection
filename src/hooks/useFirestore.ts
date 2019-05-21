@@ -5,14 +5,7 @@ import {
     FIRESTORE_ARTIST,
     FIRESTORE_DISCOGS_ID
 } from 'constant';
-
-interface AdminFormFields {
-    artist: string;
-    album: string;
-    youtubeVideoId: string;
-    discogsId: string;
-    cover: string;
-}
+import { AdminFormFields } from 'models';
 
 export const useFirestore = () => {
     const db = firebaseInit.firestore();
