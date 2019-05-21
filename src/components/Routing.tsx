@@ -10,7 +10,7 @@ const Home = moduleImport('Home');
 const NotFound = moduleImport('NotFound');
 const Admin = moduleImport('Admin');
 
-const Routing = () => (
+const Routing: React.FC = () => (
     <BrowserRouter>
         <Switch>
             <PrivateRoute exact path='/admin'>

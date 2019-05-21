@@ -30,7 +30,7 @@ const initialValues = {
 
 type FormInput<T extends string | symbol> = FieldRenderProps<string, T, any>;
 
-const Admin = () => {
+const Admin: React.FC = () => {
     const { addAlbumToCatalog } = useFirestore();
     const { activeUser, signOut } = useFirebaseAuth();
 

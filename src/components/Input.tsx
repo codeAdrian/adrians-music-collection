@@ -8,7 +8,7 @@ interface InputProps {
     type?: string;
 }
 
-const Input = ({ label, meta, ...rest }: InputProps) => (
+const Input: React.FC<InputProps> = ({ label, meta, ...rest }) => (
     <div>
         <label>{label}</label>
         <input {...rest} />

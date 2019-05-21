@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { isInViewport } from 'utils';
 
-interface loadMoreProps {
+interface LoadMoreProps {
     onElementVisible: () => void;
     canLoadMore: boolean;
 }
 
-const LoadMore = ({ onElementVisible, canLoadMore }: loadMoreProps) => {
+const LoadMore: React.FC<LoadMoreProps> = ({
+    onElementVisible,
+    canLoadMore
+}) => {
     const [debounce, setDebounce] = useState<boolean>(false);
 
     useEffect(() => {

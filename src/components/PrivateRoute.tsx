@@ -9,7 +9,7 @@ interface PrivateRouteProps {
     path: string;
 }
 
-const PrivateRoute = ({ children, ...rest }: PrivateRouteProps) => {
+const PrivateRoute: React.FC<PrivateRouteProps> = ({ children, ...rest }) => {
     const { activeUser } = useFirebaseAuth();
 
     return <Route {...rest} component={getRouteComponent} />;

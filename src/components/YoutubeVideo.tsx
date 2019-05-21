@@ -6,7 +6,7 @@ interface VideoProps {
     id: string;
 }
 
-const YoutubeVideo = ({ artist, album, id }: VideoProps) => (
+const YoutubeVideo: React.FC<VideoProps> = ({ artist, album, id }) => (
     <iframe
         src={`https://www.youtube-nocookie.com/embed/${id}?rel=0&amp;controls=0;showinfo=0;modestbranding=1;fs=0;`}
         data-modestbranding='1'

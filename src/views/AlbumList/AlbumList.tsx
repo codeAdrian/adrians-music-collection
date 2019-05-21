@@ -1,10 +1,10 @@
 import React, { useEffect, Fragment } from 'react';
 import { Card, LoadMore, Search, BackToTop } from 'components';
-import { Album } from 'types';
+import { Album } from 'models';
 import { useFirestore, useInfiniteLoader, useFetchHandler } from 'hooks';
 import { PAGE_SIZE } from 'constant';
 
-const AlbumList = () => {
+const AlbumList: React.FC = () => {
     const {
         canLoadMore,
         currentPageSize,

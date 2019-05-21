@@ -6,7 +6,7 @@ interface ListProps {
     title: string;
 }
 
-const List = ({ array, listClass, keys, title }: ListProps) => {
+const List: React.FC<ListProps> = ({ array, listClass, keys, title }) => {
     const processArray = useCallback(() => {
         if (!keys) {
             return array.map((element, index) => (

@@ -9,7 +9,7 @@ const { Form, Fields } = defineForm(f => ({
     password: f<string>()
 }));
 
-const Login = () => {
+const Login: React.FC = () => {
     const { signIn } = useFirebaseAuth();
 
     return (

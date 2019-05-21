@@ -11,7 +11,7 @@ const { Form, Fields } = defineForm(f => ({
     searchQuery: f<string>()
 }));
 
-const Search = ({ handleSubmit }: SearchProps) => {
+const Search: React.FC<SearchProps> = ({ handleSubmit }) => {
     return (
         <Form
             initialValues={{ searchQuery: '' }}

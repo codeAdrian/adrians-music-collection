@@ -1,6 +1,6 @@
 import React, { useEffect, Fragment } from 'react';
 import { useFetchHandler, useFirestore, useDiscogsApi } from 'hooks';
-import { Album, AlbumDetails } from 'types';
+import { Album, AlbumDetails } from 'models';
 import { Cover, List, YoutubeVideo } from 'components';
 
 interface AlbumProps {
@@ -11,7 +11,7 @@ interface AlbumProps {
     };
 }
 
-const AlbumDetail = ({ match }: AlbumProps): JSX.Element => {
+const AlbumDetail: React.FC<AlbumProps> = ({ match }: AlbumProps) => {
     const { params } = match;
     const { id } = params;
     const { fetchReleaseData } = useDiscogsApi();

@@ -1,9 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Cover } from 'components';
-import { Album } from 'types';
+import { Album } from 'models';
 
-const Card = ({ album, artist, cover, discogsId }: Album): JSX.Element => (
+const Card: React.FC<Album> = ({ album, artist, cover, discogsId }) => (
     <li key={discogsId}>
         <Link to={`/album/${discogsId}`}>
             <Cover offset={500} cover={cover} artist={artist} album={album} />
