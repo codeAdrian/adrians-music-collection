@@ -1,11 +1,8 @@
-html {
+.html {
     font-size: var(--typography__base);
     line-height: var(--typography__lineHeight);
 }
 
-body {
-    font-family: var(--typography__fontFamily--body);
+.body {
     font-weight: var(--typography__weight--normal);
-    color: var(--color__primary);
-    background-color: var(--color__secondary);
 }

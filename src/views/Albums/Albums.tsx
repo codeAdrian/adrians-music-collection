@@ -1,8 +1,8 @@
 import React, { useEffect, Fragment } from 'react';
 import { LoadMore, BackToTop, AlbumList } from 'components';
-import { Album } from 'models';
 import { useFirestore, useInfiniteLoader, useFetchHandler } from 'hooks';
 import { PAGE_SIZE } from 'constant';
+import { Album } from 'models';
 
 const Albums: React.FC = () => {
     const {

@@ -1,4 +1,5 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useCallback } from 'react';
+import { useEventListener } from 'hooks';
 
 const BackToTop: React.FC = function() {
     const [triggerValue, setTriggerValue] = useState(500);
@@ -8,16 +9,8 @@ const BackToTop: React.FC = function() {
         setIsActive(window.pageYOffset > triggerValue);
     }, [triggerValue]);
 
-    useEffect(() => {
-        updateTriggerValue();
-        document.addEventListener('scroll', handleScroll);
-        window.addEventListener('resize', updateTriggerValue);
-
-        return () => {
-            document.removeEventListener('scroll', handleScroll);
-            document.removeEventListener('resize', updateTriggerValue);
-        };
-    }, [handleScroll]);
+    useEventListener(document, 'scroll', handleScroll);
+    useEventListener(window, 'resize', updateTriggerValue);
 
     const activeClassName: 'active' | '' = isActive ? 'active' : '';
 

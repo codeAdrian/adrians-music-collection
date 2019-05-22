@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { isInViewport } from 'utils';
 import { LoadMoreProps } from 'models';
+import { useEventListener } from 'hooks';
 
 const LoadMore: React.FC<LoadMoreProps> = ({
     onElementVisible,
@@ -8,13 +9,7 @@ const LoadMore: React.FC<LoadMoreProps> = ({
 }) => {
     const [debounce, setDebounce] = useState(false);
 
-    useEffect(() => {
-        window.addEventListener('scroll', scrollListener);
-
-        return function cleanup() {
-            window.removeEventListener('scroll', scrollListener);
-        };
-    });
+    useEventListener(window, 'scroll', scrollListener);
 
     if (!canLoadMore) {
         window.removeEventListener('scroll', scrollListener);

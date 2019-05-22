@@ -15,3 +15,5 @@ export { Footer } from './Footer';
 export { Navigation } from './Navigation';
 export { Logo } from './Logo';
 export { AlbumList } from './AlbumList';
+export { Loading } from './Loading';
+export { Toggle } from './Toggle';

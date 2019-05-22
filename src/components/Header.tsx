@@ -1,11 +1,13 @@
 import React from 'react';
-import { Navigation, Logo, Search } from 'components';
+import { Navigation, Logo, Search, Toggle } from 'components';
 
 const Header: React.FC = () => (
     <header>
         <Logo />
         <Navigation />
-        <Search />
+        <Toggle>
+            <Search />
+        </Toggle>
     </header>
 );
 
