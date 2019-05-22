@@ -1,0 +1,21 @@
+@import '../constants/media-queries';
+
+.footer {
+    padding: var(--spacing__vertical--1) var(--spacing__default--horizontal);
+    text-align: center;
+}
+
+@media (--mq__mobileLandscape--min) {
+    .footer {
+        lost-center: 100%;
+        text-align: left;
+    }
+
+    .footer__col {
+        lost-column: 1/2;
+    }
+
+    .footer__col--last {
+        text-align: right;
+    }
+}

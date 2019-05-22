@@ -14,7 +14,7 @@ const AppLayout: React.FC<AppLayoutProps> = ({ children }) => (
         </Helmet>
 
         <Header />
-        <main>{children}</main>
+        <main className='main'>{children}</main>
         <Footer />
     </Fragment>
 );

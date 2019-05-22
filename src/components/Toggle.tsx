@@ -7,7 +7,9 @@ interface ToggleProps {
 
 const Toggle = ({ children }: ToggleProps) => {
     const { elementRef, expanded, setExpanded } = useToggle();
-    const className = expanded ? 'expanded' : 'hidden';
+    const className = expanded
+        ? 'toggle__content toggle__content--visible'
+        : 'toggle__content toggle__content--hidden';
 
     return (
         <div ref={elementRef}>

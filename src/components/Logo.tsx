@@ -2,9 +2,11 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const Logo: React.FC = () => (
-    <Link to='/'>
-        <h1 className='heading heading--level1'>Adrian's Music Collection</h1>
-    </Link>
+    <h1 className='logo heading heading--level4'>
+        <Link className='logo__link link--reset' to='/'>
+            Adrian's Music Collection
+        </Link>
+    </h1>
 );
 
 export { Logo };

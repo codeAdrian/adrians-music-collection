@@ -3,3 +3,8 @@
     background-color: var(--color__gray--8);
     background-image: var(--color__pattern);
 }
+
+.container--alt {
+    background-color: var(--color__gray--1);
+    color: var(--color__gray--8);
+}

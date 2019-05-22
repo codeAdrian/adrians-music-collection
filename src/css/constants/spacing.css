@@ -1,0 +1,9 @@
+@import '../constants/media-queries';
+
+:root {
+    --spacing__default--horizontal: var(--spacing__horizontal--n1);
+
+    @media (--mq__mobileLandscape--min) {
+        --spacing__default--horizontal: var(--spacing__horizontal--1);
+    }
+}

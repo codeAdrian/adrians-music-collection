@@ -18,12 +18,11 @@ const Albums: React.FC = () => {
     useEffect(getAlbumData, [currentPageSize, isLoading]);
 
     const noResults = apiData && apiData.length === 0;
-    if ((!apiData || noResults) && isLoading) return <div>Loading</div>;
+    if ((!apiData || noResults) && isLoading) return <Loading />;
     if (!apiData) return <div>Error</div>;
 
     return (
         <Fragment>
-            <Loading />
             <AlbumList albums={apiData} />
             <LoadMore
                 canLoadMore={isLoading || canLoadMore}

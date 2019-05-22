@@ -1,0 +1,7 @@
+.toggle__content {
+    display: none;
+}
+
+.toggle__content--visible {
+    display: block;
+}

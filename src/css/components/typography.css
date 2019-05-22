@@ -44,3 +44,14 @@
     --heading__lineHeight: var(--spacing__vertical--2);
     --heading__margin--bottom: var(--spacing__vertical--1);
 }
+
+.link--reset {
+    text-decoration: none;
+    color: inherit;
+
+    &:hover,
+    &:active,
+    &:visited {
+        color: inherit;
+    }
+}

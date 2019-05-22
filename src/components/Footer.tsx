@@ -5,9 +5,13 @@ const Footer: React.FC = () => {
     const currentYear = currentDate.getFullYear();
 
     return (
-        <footer>
-            <article>&copy; {currentYear}, Adrian Bece</article>
-            <article>{'Created with ♥ and 🤘 by Adrian Bece'}</article>
+        <footer className='footer container--alt'>
+            <article className='footer__col'>
+                &copy; {currentYear}, Adrian Bece
+            </article>
+            <article className='footer__col footer__col--last'>
+                {'Created with ♥ and 🤘 by Adrian Bece'}
+            </article>
         </footer>
     );
 };

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Loading } from 'components';
 import { isInViewport } from 'utils';
 import { LoadMoreProps } from 'models';
 import { useEventListener } from 'hooks';
@@ -13,10 +14,14 @@ const LoadMore: React.FC<LoadMoreProps> = ({
 
     if (!canLoadMore) {
         window.removeEventListener('scroll', scrollListener);
-        return <div>No more to load</div>;
+        return null;
     }
 
-    return <div id='load-more'>Load more</div>;
+    return (
+        <div id='load-more'>
+            <Loading />
+        </div>
+    );
 
     function scrollListener() {
         setDebounce(false);
