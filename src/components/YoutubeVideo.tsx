@@ -7,14 +7,17 @@ const YoutubeVideo: React.FC<VideoProps> = ({ artist, album, id }) => {
     const title = `Music Video for a song from ${artist} - ${album}`;
 
     return (
-        <iframe
-            src={videoSrc}
-            title={title}
-            data-modestbranding='1'
-            data-showinfo='0'
-            data-controls='0'
-            data-fs='0'
-        />
+        <div className='video'>
+            <iframe
+                src={videoSrc}
+                className='video__iframe'
+                title={title}
+                data-modestbranding='1'
+                data-showinfo='0'
+                data-controls='0'
+                data-fs='0'
+            />
+        </div>
     );
 };
 

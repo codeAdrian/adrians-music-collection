@@ -1,0 +1,25 @@
+.button {
+    border: none;
+    margin: 0;
+    padding: 0;
+    width: auto;
+    overflow: visible;
+    background: transparent;
+    color: inherit;
+    font: inherit;
+    line-height: normal;
+    -webkit-font-smoothing: inherit;
+    -moz-osx-font-smoothing: inherit;
+    -webkit-appearance: none;
+}
+
+.button--linkToButton {
+    text-decoration: none;
+    display: inline-block;
+}
+
+.button--cta {
+    color: var(--color__gray--8);
+    background-color: var(--color__cta);
+    padding: var(--spacing__vertical--n1) var(--spacing__horizontal--1);
+}

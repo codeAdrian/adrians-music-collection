@@ -1,14 +1,15 @@
 @import '../constants/media-queries';
 
 :root {
-    --typography__lineHeight: 1.5;
-    --typography__fontSize--px: 14;
+    --typography__lineHeight: 1.333;
+    --typography__fontSize--px: 18;
     --typography__scale: 1.333;
 
+    --typography__fontFamily: 'Germania One', Arial, sans-serif;
+
     --typography__weight--normal: 400;
-    --typography__weight--bold: 700;
 
     @media (--mq__tablet--min) {
-        --typography__fontSize--px: 16;
+        --typography__fontSize--px: 24;
     }
 }

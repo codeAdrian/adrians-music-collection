@@ -12,8 +12,8 @@ const AlbumDetail: React.FC<AlbumProps> = ({ match }: AlbumProps) => {
     const discogsApi = useFetchHandler<AlbumDetails>();
     const firebaseApi = useFetchHandler<Album>();
 
-    useEffect(getDiscogsData, [discogsApi, id]);
-    useEffect(getFirebaseData, [firebaseApi, id]);
+    useEffect(getFirebaseData, []);
+    useEffect(getDiscogsData, []);
 
     const isLoading = firebaseApi.isLoading || discogsApi.isLoading;
 
@@ -65,7 +65,7 @@ const AlbumDetail: React.FC<AlbumProps> = ({ match }: AlbumProps) => {
                 keys={['name', 'role']}
             />
             <YoutubeVideo album={album} artist={artist} id={youtubeVideoId} />
-            <Cover album={album} artist={artist} cover={cover} offset={0} />
+            <Cover album={album} artist={artist} cover={cover} offset={100} />
         </Fragment>
     );
 
@@ -76,7 +76,7 @@ const AlbumDetail: React.FC<AlbumProps> = ({ match }: AlbumProps) => {
 
         if (dataArray.length > 4) dataArray.length = 4;
 
-        setRelatedAlbums(dataArray);
+        !relatedAlbums && setRelatedAlbums(dataArray);
     }
 
     function parseDiscogsData(response: Response) {

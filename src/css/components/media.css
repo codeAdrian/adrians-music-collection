@@ -1,0 +1,23 @@
+:root {
+    --video__aspectRatio: 56.25%;
+}
+
+.video {
+    position: relative;
+    padding-bottom: var(--video__aspectRatio);
+    height: 0;
+}
+
+.video__iframe {
+    z-index: 2;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.image {
+    display: block;
+    max-width: 100%;
+}

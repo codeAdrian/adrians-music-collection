@@ -26,7 +26,7 @@ const Search = withRouter(({ location }) => {
 
     return (
         <Fragment>
-            {`Search results for "${searchQuery}"`}
+            {`Search results for "${searchQuery}" (exact matches)`}
             <AlbumList albums={apiData} />
         </Fragment>
     );

@@ -1,6 +1,13 @@
 @import './helpers/spacing';
 @import './helpers/typography';
 
+@import './constants/colors';
 @import './constants/typography';
 
+@import './components/page';
 @import './components/typography';
+@import './components/buttons';
+@import './components/containers';
+@import './components/list';
+@import './components/loading';
+@import './components/media';

@@ -1,5 +1,5 @@
 import React, { useEffect, Fragment } from 'react';
-import { LoadMore, BackToTop, AlbumList } from 'components';
+import { LoadMore, BackToTop, AlbumList, Loading } from 'components';
 import { useFirestore, useInfiniteLoader, useFetchHandler } from 'hooks';
 import { PAGE_SIZE } from 'constant';
 import { Album } from 'models';
@@ -23,6 +23,7 @@ const Albums: React.FC = () => {
 
     return (
         <Fragment>
+            <Loading />
             <AlbumList albums={apiData} />
             <LoadMore
                 canLoadMore={isLoading || canLoadMore}

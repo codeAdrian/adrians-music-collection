@@ -18,7 +18,7 @@ const List: React.FC<ListProps> = ({ array, listClass, keys, title }) => {
                 return (
                     <li
                         key={`${listClass}-${key}-${index}`}
-                        className={`${listClass}__${key}`}
+                        className={`čist${listClass}__${key}`}
                     >
                         {element[key]}
                     </li>
@@ -26,7 +26,7 @@ const List: React.FC<ListProps> = ({ array, listClass, keys, title }) => {
             });
             return (
                 <li key={`${listClass}-${index}`}>
-                    <ul>{_element}</ul>
+                    <ul className='list--reset'>{_element}</ul>
                 </li>
             );
         });
@@ -41,7 +41,7 @@ const List: React.FC<ListProps> = ({ array, listClass, keys, title }) => {
     return (
         <div>
             <small>{title}</small>
-            <ul>{processedArray}</ul>
+            <ul className='list--reset'>{processedArray}</ul>
         </div>
     );
 };
