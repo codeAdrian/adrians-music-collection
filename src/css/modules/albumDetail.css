@@ -1,0 +1,11 @@
+.albumDetail {
+    lost-center: 100%;
+}
+
+.albumDetail__aside {
+    lost-column: 36/100;
+}
+
+.albumDetail__main {
+    lost-column: 64/100;
+}

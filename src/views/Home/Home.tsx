@@ -2,8 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const Home: React.FC = () => (
-    <section>
-        <article className='container--pattern'>
+    <section className='hero container--pattern'>
+        <article>
             <h2 className='heading heading--level2'>Long live rock 'n' roll</h2>
             <p className='paragraph'>
                 Collecting oldschool rock and metal CDs since childhood. Proud

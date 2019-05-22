@@ -1,8 +1,17 @@
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
+}
+
 .body {
     margin: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+    background-color: var(--color__gray--7);
 }
 
 .main {
-    min-height: 100vh;
-    padding-top: var(--spacing__vertical--3);
+    min-height: calc(100vh - var(--spacing__vertical--3));
+    padding-top: var(--spacing__vertical--2);
 }

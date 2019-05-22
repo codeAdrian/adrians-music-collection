@@ -1,4 +1,4 @@
-import React, { useEffect, useState, Fragment } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useFetchHandler, useFirestore, useDiscogsApi } from 'hooks';
 import { Album, AlbumDetails, AlbumProps } from 'models';
 import { Cover, List, YoutubeVideo } from 'components';
@@ -39,34 +39,53 @@ const AlbumDetail: React.FC<AlbumProps> = ({ match }: AlbumProps) => {
     searchAlbumData(artist, parseAlbumsByArtist);
 
     return (
-        <Fragment>
-            <List title={'Genre'} array={styles} listClass='genreList' />
-            <List
-                title={'CD Format'}
-                array={formats[0].descriptions}
-                listClass='formatsList'
-            />
-            <List
-                title={'Catalog Number'}
-                array={labels}
-                listClass='catalogList'
-                keys={['name', 'catno']}
-            />
-            <List
-                title={'Tracklist'}
-                array={tracklist}
-                listClass={'trackList'}
-                keys={['position', 'title', 'duration']}
-            />
-            <List
-                title={'Credits'}
-                array={extraartists}
-                listClass='artistList'
-                keys={['name', 'role']}
-            />
-            <YoutubeVideo album={album} artist={artist} id={youtubeVideoId} />
-            <Cover album={album} artist={artist} cover={cover} offset={100} />
-        </Fragment>
+        <section className='albumDetail'>
+            <aside className='albumDetail__aside container--pattern'>
+                <Cover
+                    album={album}
+                    artist={artist}
+                    cover={cover}
+                    offset={100}
+                />
+
+                <h2>{artist}</h2>
+
+                <h3>{album}</h3>
+
+                <List title={'Genre'} array={styles} listClass='genreList' />
+                <List
+                    title={'CD Format'}
+                    array={formats[0].descriptions}
+                    listClass='formatsList'
+                />
+                <List
+                    title={'Catalog Number'}
+                    array={labels}
+                    listClass='catalogList'
+                    keys={['name', 'catno']}
+                />
+            </aside>
+            <article className='albumDetail__main'>
+                <YoutubeVideo
+                    album={album}
+                    artist={artist}
+                    id={youtubeVideoId}
+                />
+
+                <List
+                    title={'Tracklist'}
+                    array={tracklist}
+                    listClass={'trackList'}
+                    keys={['position', 'title', 'duration']}
+                />
+                <List
+                    title={'Credits'}
+                    array={extraartists}
+                    listClass='artistList'
+                    keys={['name', 'role']}
+                />
+            </article>
+        </section>
     );
 
     function parseAlbumsByArtist(snap: firebase.firestore.QuerySnapshot) {

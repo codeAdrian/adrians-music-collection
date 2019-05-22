@@ -1,10 +1,12 @@
 .header {
     display: flex;
     justify-content: space-between;
+    min-height: var(--spacing__vertical--2);
 }
 
 .header--fixed {
     position: fixed;
+    z-index: var(--level__middle--top);
     top: 0;
     left: 0;
     right: 0;
