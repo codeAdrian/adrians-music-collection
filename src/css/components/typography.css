@@ -13,6 +13,7 @@
     font-size: var(--heading__fontSize);
     line-height: var(--heading__lineHeight);
     margin-bottom: var(--heading__margin--bottom);
+    font-weight: var(--typography__weight--normal);
     margin-top: 0;
 }
 
