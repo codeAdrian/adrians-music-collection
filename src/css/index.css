@@ -14,6 +14,8 @@
 @import './components/list';
 @import './components/loading';
 @import './components/media';
+@import './components/icon';
+@import './components/deco';
 
 @import './modules/footer';
 @import './modules/logo';
@@ -24,3 +26,5 @@
 @import './modules/albumDetail';
 @import './modules/card';
 @import './modules/toggle';
+@import './modules/backToTop';
+@import './modules/loadMore';

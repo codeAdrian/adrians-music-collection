@@ -11,6 +11,7 @@
     -webkit-font-smoothing: inherit;
     -moz-osx-font-smoothing: inherit;
     -webkit-appearance: none;
+    text-align: center;
 }
 
 .button--linkToButton {
@@ -22,4 +23,11 @@
     color: var(--color__gray--8);
     background-color: var(--color__cta);
     padding: var(--spacing__vertical--n1) var(--spacing__horizontal--1);
+}
+
+.button--fixed {
+    position: fixed;
+    z-index: var(--level__medium--bottom);
+    background-color: var(--color__gray--8);
+    transition: bottom 0.6s ease;
 }

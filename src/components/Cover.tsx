@@ -7,8 +7,6 @@ const Cover: React.FC<CoverProps> = ({ offset, cover, artist, album }) => {
     const coverUrl = `${CLOUDINARY_API}/${CLOUDINARY_CONFIG}/${CLOUDINARY_MUSIC}/${cover}`;
     const alt = `${artist} - ${album} cover artwork`;
 
-    console.log('coverUrl', coverUrl);
-
     return (
         <LazyLoad offsetVertical={offset}>
             <img className='image' src={coverUrl} alt={alt} />

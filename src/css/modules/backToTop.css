@@ -1,0 +1,8 @@
+.backToTop {
+    bottom: calc(-1 * var(--spacing__vertical--4));
+    right: var(--spacing__vertical--1);
+}
+
+.backToTop--active {
+    bottom: var(--spacing__vertical--1);
+}

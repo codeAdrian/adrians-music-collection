@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, Fragment } from 'react';
 import { Loading } from 'components';
 import { isInViewport } from 'utils';
 import { LoadMoreProps } from 'models';
@@ -6,21 +6,27 @@ import { useEventListener } from 'hooks';
 
 const LoadMore: React.FC<LoadMoreProps> = ({
     onElementVisible,
-    canLoadMore
+    canLoadMore,
+    isLoadingMore
 }) => {
     const [debounce, setDebounce] = useState(false);
 
     useEventListener(window, 'scroll', scrollListener);
 
-    if (!canLoadMore) {
-        window.removeEventListener('scroll', scrollListener);
-        return null;
-    }
+    const defaultClasses = 'button button--fixed deco loadMore__button';
+    const className = isLoadingMore
+        ? `${defaultClasses} loadMore__button--active`
+        : defaultClasses;
 
     return (
-        <div id='load-more'>
-            <Loading />
-        </div>
+        <Fragment>
+            {canLoadMore && <div className='loadMore' id='load-more' />}
+            <div className={className}>
+                <div className='deco__content'>
+                    <Loading />
+                </div>
+            </div>
+        </Fragment>
     );
 
     function scrollListener() {

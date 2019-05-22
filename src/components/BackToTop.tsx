@@ -12,11 +12,15 @@ const BackToTop: React.FC = function() {
     useEventListener(document, 'scroll', handleScroll);
     useEventListener(window, 'resize', updateTriggerValue);
 
-    const activeClassName: 'active' | '' = isActive ? 'active' : '';
+    const defaultClasses = 'button button--fixed backToTop deco';
+
+    const activeClassName = isActive
+        ? `${defaultClasses} backToTop--active`
+        : defaultClasses;
 
     return (
         <button onClick={scrollToTop} className={activeClassName}>
-            BACK TO TOP
+            <span className='deco__content icon--medium fas fa-arrow-up' />
         </button>
     );
 
