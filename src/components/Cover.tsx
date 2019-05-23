@@ -8,9 +8,11 @@ const Cover: React.FC<CoverProps> = ({ offset, cover, artist, album }) => {
     const alt = `${artist} - ${album} cover artwork`;
 
     return (
-        <LazyLoad offsetVertical={offset}>
-            <img className='image' src={coverUrl} alt={alt} />
-        </LazyLoad>
+        <figure className='cover'>
+            <LazyLoad offsetVertical={offset}>
+                <img className='image' src={coverUrl} alt={alt} />
+            </LazyLoad>
+        </figure>
     );
 };
 

@@ -28,7 +28,7 @@
     --typography__smallest: calc((1 / var(--typography__scale--3)) * 1rem);
     --typography__smaller: calc((1 / var(--typography__scale--2)) * 1rem);
     --typography__small: calc((1 / var(--typography__scale--1)) * 1rem);
-    --typography__base: calc(var(--typography__fontSize) * 1rem);
+    --typography__base: 1rem;
     --typography__medium: calc(var(--typography__scale--1) * 1rem);
     --typography__larger: calc(var(--typography__scale--2) * 1rem);
     --typography__large: calc(var(--typography__scale--3) * 1rem);

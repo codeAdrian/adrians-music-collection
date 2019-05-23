@@ -2,7 +2,7 @@
     height: var(--spacing__vertical--2);
     width: var(--spacing__vertical--2);
     display: inline-block;
-    border: var(--spacing__vertical--n2) double var(--color__gray--1);
+    border: var(--border__width--thick) double var(--color__gray--1);
     transform: rotateZ(45deg);
     backface-visibility: hidden;
 }

@@ -5,14 +5,21 @@ import { Album } from 'models';
 
 const Card: React.FC<Album> = ({ album, artist, cover, discogsId }) => (
     <li className='card' key={discogsId}>
-        <Link to={`/albums/album/${discogsId}`}>
+        <Link
+            className='card__wrapper link--reset'
+            to={`/albums/album/${discogsId}`}
+        >
             <Cover offset={500} cover={cover} artist={artist} album={album} />
 
-            <hr />
+            <hr className='divider' />
 
-            <div>
-                <h2>{artist}</h2>
-                <h3>{album}</h3>
+            <div className='card__info container--pattern'>
+                <h2 className='card__title card__title--primary heading heading--level4'>
+                    {artist}
+                </h2>
+                <h3 className='card__title card__title--primary heading heading--level5'>
+                    {album}
+                </h3>
             </div>
         </Link>
     </li>
