@@ -1,7 +1,11 @@
 import React from 'react';
 
-const Loading = () => (
-    <div className='loading'>
+interface LoadingProps {
+    className?: string;
+}
+
+const Loading = ({ className }: LoadingProps) => (
+    <div className={`loading ${className ? className : ''}`}>
         <span className='loading__icon fas fa-compact-disc' />
     </div>
 );

@@ -6,6 +6,7 @@ import { useEventListener } from 'hooks';
 
 const LoadMore: React.FC<LoadMoreProps> = ({
     onElementVisible,
+    skeleton,
     canLoadMore,
     isLoadingMore
 }) => {
@@ -20,7 +21,11 @@ const LoadMore: React.FC<LoadMoreProps> = ({
 
     return (
         <Fragment>
-            {canLoadMore && <div className='loadMore' id='load-more' />}
+            {canLoadMore && (
+                <div className='loadMore' id='load-more'>
+                    {skeleton}
+                </div>
+            )}
             <div className={className}>
                 <div className='deco__content'>
                     <Loading />

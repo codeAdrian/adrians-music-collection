@@ -6,7 +6,6 @@
 .body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    font-size: 1rem;
     font-weight: var(--typography__weight--normal);
     font-family: var(--typography__fontFamily);
     color: var(--color__gray--1);

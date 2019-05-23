@@ -1,5 +1,6 @@
 import React from 'react';
 import LazyLoad from 'react-lazy-load';
+import { Loading } from 'components';
 import { CoverProps } from 'models';
 import { CLOUDINARY_API, CLOUDINARY_CONFIG, CLOUDINARY_MUSIC } from 'constant';
 
@@ -9,9 +10,16 @@ const Cover: React.FC<CoverProps> = ({ offset, cover, artist, album }) => {
 
     return (
         <figure className='cover'>
-            <LazyLoad offsetVertical={offset}>
-                <img className='image' src={coverUrl} alt={alt} />
-            </LazyLoad>
+            <Loading className='cover__loading' />
+            {cover && (
+                <LazyLoad offsetVertical={offset}>
+                    <img
+                        className='image cover__image'
+                        src={coverUrl}
+                        alt={alt}
+                    />
+                </LazyLoad>
+            )}
         </figure>
     );
 };

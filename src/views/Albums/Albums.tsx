@@ -4,6 +4,25 @@ import { useFirestore, useInfiniteLoader, useFetchHandler } from 'hooks';
 import { PAGE_SIZE } from 'constant';
 import { Album } from 'models';
 
+const albumSkeleton = new Album({
+    album: '',
+    artist: '',
+    cover: '',
+    discogsId: '',
+    youtubeVideoId: ''
+});
+
+const skeletonArray: Album[] = Array.from({ length: PAGE_SIZE }).map(
+    (item, index) =>
+        new Album({
+            album: 'Loading',
+            artist: 'Loading',
+            cover: '',
+            discogsId: `skeleton-${index}`,
+            youtubeVideoId: ''
+        })
+);
+
 const Albums: React.FC = () => {
     const {
         canLoadMore,
@@ -17,13 +36,18 @@ const Albums: React.FC = () => {
 
     useEffect(getAlbumData, [currentPageSize, isLoading]);
 
-    const noResults = apiData && apiData.length === 0;
+    const noResults = !apiData || !apiData.length || apiData.length === 0;
     if (!apiData && !isLoading) return <div>Error</div>;
+
+    const showSkeleton = noResults || isLoading || canLoadMore;
+
+    const skeleton = <AlbumList albums={skeletonArray} />;
 
     return (
         <Fragment>
-            <AlbumList albums={apiData || []} />
+            <AlbumList albums={(!noResults && apiData) || []} />
             <LoadMore
+                skeleton={skeleton}
                 canLoadMore={isLoading || canLoadMore}
                 isLoadingMore={!noResults && isLoading}
                 onElementVisible={handleLoadMore}
@@ -43,8 +67,10 @@ const Albums: React.FC = () => {
     }
 
     function handleLoadMore() {
-        setCurrentPageSize(currentPageSize + PAGE_SIZE);
-        setIsLoading(true);
+        if (!isLoading) {
+            setCurrentPageSize(currentPageSize + PAGE_SIZE);
+            setIsLoading(true);
+        }
     }
 };
 
