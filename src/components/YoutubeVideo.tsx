@@ -1,5 +1,6 @@
 import React from 'react';
 import { YOUTUBE_EMBED_URL, YOUTUBE_QUERY_VARS } from 'constant';
+import { Loading } from 'components';
 import { VideoProps } from 'models';
 
 const YoutubeVideo: React.FC<VideoProps> = ({ artist, album, id }) => {
@@ -8,6 +9,7 @@ const YoutubeVideo: React.FC<VideoProps> = ({ artist, album, id }) => {
 
     return (
         <div className='video'>
+            <Loading className='video__loading' />
             <iframe
                 src={videoSrc}
                 className='video__iframe'

@@ -4,14 +4,6 @@ import { useFirestore, useInfiniteLoader, useFetchHandler } from 'hooks';
 import { PAGE_SIZE } from 'constant';
 import { Album } from 'models';
 
-const albumSkeleton = new Album({
-    album: '',
-    artist: '',
-    cover: '',
-    discogsId: '',
-    youtubeVideoId: ''
-});
-
 const skeletonArray: Album[] = Array.from({ length: PAGE_SIZE }).map(
     (item, index) =>
         new Album({
@@ -38,8 +30,6 @@ const Albums: React.FC = () => {
 
     const noResults = !apiData || !apiData.length || apiData.length === 0;
     if (!apiData && !isLoading) return <div>Error</div>;
-
-    const showSkeleton = noResults || isLoading || canLoadMore;
 
     const skeleton = <AlbumList albums={skeletonArray} />;
 

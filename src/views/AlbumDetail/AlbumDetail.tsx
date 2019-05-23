@@ -3,23 +3,46 @@ import { useFetchHandler, useFirestore, useDiscogsApi } from 'hooks';
 import { Album, AlbumDetails, AlbumProps } from 'models';
 import { Cover, List, YoutubeVideo } from 'components';
 
+const firebaseSkeleton = new Album({
+    youtubeVideoId: '',
+    album: 'Loading',
+    artist: 'Loading',
+    cover: '',
+    discogsId: ''
+});
+
+const discogsSkeleton = new AlbumDetails({
+    artists_sort: 'Loading',
+    extraartists: [{ name: 'Loading', role: 'Loading' }],
+    formats: [{ descriptions: ['Loading'] }],
+    styles: ['Loading'],
+    labels: ['Loading'],
+    genres: ['Loading'],
+    tracklist: [
+        {
+            position: 'Loading',
+            title: 'Loading',
+            duration: 'Loading'
+        }
+    ]
+});
+
 const AlbumDetail: React.FC<AlbumProps> = ({ match }: AlbumProps) => {
     const { params } = match;
     const { id } = params;
     const { fetchReleaseData } = useDiscogsApi();
     const { getAlbumData, searchAlbumData } = useFirestore();
     const [relatedAlbums, setRelatedAlbums] = useState<Album[]>([]);
-    const discogsApi = useFetchHandler<AlbumDetails>();
-    const firebaseApi = useFetchHandler<Album>();
+    const discogsApi = useFetchHandler<AlbumDetails>(discogsSkeleton);
+    const firebaseApi = useFetchHandler<Album>(firebaseSkeleton);
 
     useEffect(getFirebaseData, []);
     useEffect(getDiscogsData, []);
 
     const isLoading = firebaseApi.isLoading || discogsApi.isLoading;
 
-    if (isLoading) return <div>Loading</div>;
-
-    if (!discogsApi.apiData || !firebaseApi.apiData) return <div>Error</div>;
+    if (!isLoading && (!discogsApi.apiData || !firebaseApi.apiData))
+        return <div>Error</div>;
 
     const {
         styles,
