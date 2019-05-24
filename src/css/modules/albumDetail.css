@@ -4,6 +4,11 @@
 
 .albumDetail__aside {
     lost-column: 36/100;
+    text-align: right;
+}
+
+.albumDetail__wrapper {
+    padding: var(--spacing__vertical--1) var(--spacing__default--horizontal);
 }
 
 .albumDetail__main {

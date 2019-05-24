@@ -1,5 +1,6 @@
 export interface AlbumDetails {
     artists_sort: string;
+    released: string;
     extraartists: Artist[];
     formats: Format[];
     styles: string[];

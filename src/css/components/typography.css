@@ -14,7 +14,7 @@
 .heading {
     font-size: var(--heading__fontSize);
     line-height: var(--heading__lineHeight);
-    margin-bottom: var(--heading__margin--bottom);
+    margin-bottom: var(--spacing__vertical--1);
     font-weight: var(--typography__weight--normal);
     margin-top: 0;
 }
@@ -24,34 +24,40 @@
     margin-bottom: var(--spacing__vertical--1);
 }
 
+.small {
+    --heading__fontSize: var(--typography__small);
+    --heading__lineHeight: var(--spacing__vertical--1);
+}
+
+.small--default {
+    color: var(--color__cta);
+}
+
 .heading--level1 {
     --heading__fontSize: var(--typography__xlarge);
     --heading__lineHeight: var(--spacing__vertical--3);
-    --heading__margin--bottom: var(--spacing__vertical--1);
 }
 
 .heading--level2 {
     --heading__fontSize: var(--typography__large);
     --heading__lineHeight: var(--spacing__vertical--2);
-    --heading__margin--bottom: var(--spacing__vertical--1);
 }
 
 .heading--level3 {
     --heading__fontSize: var(--typography__larger);
     --heading__lineHeight: var(--spacing__vertical--2);
-    --heading__margin--bottom: var(--spacing__vertical--1);
 }
 
 .heading--level4 {
     --heading__fontSize: var(--typography__medium);
-    --heading__lineHeight: var(--spacing__vertical--2);
-    --heading__margin--bottom: var(--spacing__vertical--1);
+    --heading__lineHeight: calc(
+        var(--spacing__vertical--1) + var(--spacing__vertical--n2)
+    );
 }
 
 .heading--level5 {
     font-size: var(--typography__base);
     --heading__lineHeight: var(--spacing__vertical--1);
-    --heading__margin--bottom: var(--spacing__vertical--1);
 }
 
 .link--reset {

@@ -12,7 +12,7 @@
 }
 
 .card__info {
-    padding: var(--spacing__vertical--n1) var(--spacing__vertical--n2);
+    padding: var(--spacing__vertical--1) var(--spacing__vertical--n2) 0;
     flex-grow: 1;
     text-align: center;
 }

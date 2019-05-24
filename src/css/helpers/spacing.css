@@ -5,6 +5,8 @@
 :root {
     --rhythmUnit: calc(var(--typography__lineHeight) * 1rem);
 
+    --spacing__vertical--n8: calc(var(--rhythmUnit) / 9);
+    --spacing__vertical--n7: calc(var(--rhythmUnit) / 8);
     --spacing__vertical--n6: calc(var(--rhythmUnit) / 7);
     --spacing__vertical--n5: calc(var(--rhythmUnit) / 6);
     --spacing__vertical--n4: calc(var(--rhythmUnit) / 5);

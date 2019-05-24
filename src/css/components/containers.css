@@ -1,6 +1,5 @@
 .container--pattern {
     background-size: var(--spacing__vertical--n4) var(--spacing__vertical--n4);
-    background-color: var(--color__gray--8);
     background-image: var(--color__pattern);
 }
 

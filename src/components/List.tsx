@@ -5,7 +5,12 @@ const List: React.FC<ListProps> = ({ array, listClass, keys, title }) => {
     const processArray = useCallback(() => {
         if (!keys) {
             return array.map((element, index) => (
-                <li key={`${listClass}-${index}`}>{element}</li>
+                <li
+                    className={`list__element list__element--${listClass}`}
+                    key={`${listClass}-${index}`}
+                >
+                    {element}
+                </li>
             ));
         }
 
@@ -18,15 +23,20 @@ const List: React.FC<ListProps> = ({ array, listClass, keys, title }) => {
                 return (
                     <li
                         key={`${listClass}-${key}-${index}`}
-                        className={`čist${listClass}__${key}`}
+                        className={`list__element list__element--inline list__element--${key}`}
                     >
                         {element[key]}
                     </li>
                 );
             });
             return (
-                <li key={`${listClass}-${index}`}>
-                    <ul className='list--reset'>{_element}</ul>
+                <li
+                    className='list__element list__element--wrapper'
+                    key={`${listClass}-${index}`}
+                >
+                    <ul className='list list--inline list--reset'>
+                        {_element}
+                    </ul>
                 </li>
             );
         });
@@ -39,8 +49,8 @@ const List: React.FC<ListProps> = ({ array, listClass, keys, title }) => {
     const processedArray = processArray();
 
     return (
-        <div>
-            <small>{title}</small>
+        <div className={`listWrapper listWrapper--${listClass}`}>
+            <small className='small small--default'>{title}</small>
             <ul className='list--reset'>{processedArray}</ul>
         </div>
     );
