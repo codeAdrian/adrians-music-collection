@@ -4,6 +4,7 @@
     padding: 0;
     width: auto;
     overflow: visible;
+    outline: 0;
     background: transparent;
     color: inherit;
     font: inherit;
@@ -12,6 +13,7 @@
     -moz-osx-font-smoothing: inherit;
     -webkit-appearance: none;
     text-align: center;
+    cursor: pointer;
 }
 
 .button--linkToButton {

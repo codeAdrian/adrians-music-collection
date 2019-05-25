@@ -14,7 +14,10 @@ const firebaseSkeleton = new Album({
 const discogsSkeleton = new AlbumDetails({
     artists_sort: 'Loading',
     released: 'Loading',
-    extraartists: [{ name: 'Loading', role: 'Loading' }],
+    extraartists: [...new Array(5)].map((item, index) => ({
+        name: 'Loading',
+        role: 'Loading'
+    })),
     formats: [{ descriptions: ['Loading'] }],
     styles: ['Loading'],
     labels: ['Loading'],
@@ -30,7 +33,7 @@ const AlbumDetail: React.FC<AlbumProps> = ({ match }: AlbumProps) => {
     const { params } = match;
     const { id } = params;
     const { fetchReleaseData } = useDiscogsApi();
-    const { getAlbumData, searchAlbumData } = useFirestore();
+    const { getAlbumData } = useFirestore();
     const discogsApi = useFetchHandler<AlbumDetails>(discogsSkeleton);
     const firebaseApi = useFetchHandler<Album>(firebaseSkeleton);
 

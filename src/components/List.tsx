@@ -34,7 +34,9 @@ const List: React.FC<ListProps> = ({ array, listClass, keys, title }) => {
                     className='list__element list__element--wrapper'
                     key={`${listClass}-${index}`}
                 >
-                    <ul className='list list--inline list--reset'>
+                    <ul
+                        className={`list list--inline list--reset list--${listClass}`}
+                    >
                         {_element}
                     </ul>
                 </li>

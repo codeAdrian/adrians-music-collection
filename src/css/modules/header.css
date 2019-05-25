@@ -1,7 +1,10 @@
 .header {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     min-height: var(--spacing__vertical--2);
+    padding-right: var(--spacing__default--horizontal);
+    padding-left: var(--spacing__default--horizontal);
 }
 
 .header--fixed {
@@ -10,4 +13,9 @@
     top: 0;
     left: 0;
     right: 0;
+}
+
+.header__wrapper {
+    display: flex;
+    align-items: center;
 }

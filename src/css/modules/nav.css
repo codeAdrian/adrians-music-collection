@@ -1,6 +1,7 @@
 .nav {
     display: flex;
     min-width: 420px;
+    padding-right: var(--spacing__horizontal--n4);
 }
 
 .nav__link {

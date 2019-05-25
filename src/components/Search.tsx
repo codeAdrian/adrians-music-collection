@@ -17,9 +17,11 @@ const Search = withRouter(({ history, location }) => {
             initialValues={{ searchQuery: searchQuery || '' }}
             onSubmit={handleSubmit}
             render={({ handleSubmit }) => (
-                <form onSubmit={handleSubmit}>
+                <form className='searchForm' onSubmit={handleSubmit}>
                     <Fields.searchQuery render={getSearchInput} />
-                    <button type='submit'>Search</button>
+                    <button className='searchForm__button' type='submit'>
+                        <span className='fas fa-search' />
+                    </button>
                 </form>
             )}
         />
@@ -40,6 +42,7 @@ const Search = withRouter(({ history, location }) => {
                 type='search'
                 meta={meta}
                 required
+                hideLabel
                 {...input}
             />
         );

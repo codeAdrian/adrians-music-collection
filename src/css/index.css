@@ -17,6 +17,7 @@
 @import './components/loading';
 @import './components/media';
 @import './components/icon';
+@import './components/input';
 @import './components/deco';
 @import './components/cover';
 
@@ -31,3 +32,4 @@
 @import './modules/toggle';
 @import './modules/backToTop';
 @import './modules/loadMore';
+@import './modules/search';

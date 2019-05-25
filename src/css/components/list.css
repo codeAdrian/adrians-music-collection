@@ -16,16 +16,16 @@
 
 .list__element--catno {
     padding-right: 0;
+    font-size: var(--typography__small);
 }
 
 .listWrapper {
     padding-bottom: var(--spacing__vertical--1);
 }
 
-.listWrapper--catalog {
-    max-width: 300px;
-    margin-right: 0;
-    margin-left: auto;
+.list--catalog {
+    display: block;
+    padding-bottom: var(--spacing__vertical--n1);
 }
 
 .listWrapper--trackList {
