@@ -1,3 +1,29 @@
+:root {
+    --divider__size: var(--spacing__horizontal--1);
+}
+
 .divider {
     margin: 0;
+    overflow: visible;
+    height: calc(3 * var(--border__width--thin));
+    border: var(--border__width--thin) solid var(--color__gray--1);
+    background-color: var(--color__gray--8);
+    text-align: center;
+
+    &::before {
+        content: '';
+        display: inline-block;
+        top: calc(
+            -0.5 * var(--divider__size) + 0.25 * (var(--border__width--medium))
+        );
+        transform: rotateZ(45deg);
+        position: relative;
+        width: var(--divider__size);
+        height: var(--divider__size);
+        left: 0;
+        right: 0;
+        background-color: var(--color__gray--8);
+        border: var(--border__width--medium) double var(--color__gray--1);
+        z-index: 3;
+    }
 }

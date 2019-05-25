@@ -11,9 +11,9 @@ const Card: React.FC<Album> = ({ album, artist, cover, discogsId }) => (
         >
             <Cover offset={500} cover={cover} artist={artist} album={album} />
 
-            <hr className='divider' />
-
             <div className='card__info container--pattern'>
+                <hr className='divider card__divider' />
+
                 <h2 className='card__title card__title--primary heading heading--level4'>
                     {artist}
                 </h2>

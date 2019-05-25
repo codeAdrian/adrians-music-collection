@@ -1,9 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import LazyLoad from 'react-lazy-load';
+import heroImage from 'assets/hero.png';
 
 const Home: React.FC = () => (
     <section className='hero container--pattern'>
-        <article>
+        <article className='hero__wrapper hero__wrapper--content'>
             <h2 className='heading heading--level2'>Long live rock 'n' roll</h2>
             <p className='paragraph'>
                 Collecting oldschool rock and metal CDs since childhood. Proud
@@ -16,7 +18,11 @@ const Home: React.FC = () => (
                 View Collection
             </Link>
         </article>
-        <article>Image here</article>
+        <article className='hero__wrapper hero__wrapper--image'>
+            <LazyLoad offset={0}>
+                <img className='image' src={heroImage} alt='Adrian Bece' />
+            </LazyLoad>
+        </article>
     </section>
 );
 

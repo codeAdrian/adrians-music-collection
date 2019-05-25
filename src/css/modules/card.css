@@ -15,4 +15,13 @@
     padding: var(--spacing__vertical--1) var(--spacing__vertical--n2) 0;
     flex-grow: 1;
     text-align: center;
+    position: relative;
+}
+
+.card__divider {
+    position: absolute;
+    z-index: var(--level__middle);
+    top: 0;
+    left: calc(-0.25 * var(--border__width--medium));
+    right: calc(-0.25 * var(--border__width--medium));
 }
