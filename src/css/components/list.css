@@ -64,9 +64,12 @@
 
 .list__element--duration {
     padding-right: 0;
+    flex-basis: var(--spacing__horizontal--3);
+    text-align: right;
 }
 
 .list__element--position {
     padding-left: 0;
+    flex-shrink: 0;
     flex-basis: var(--spacing__horizontal--3);
 }
