@@ -22,7 +22,9 @@ const Login: React.FC = () => {
                     <form onSubmit={handleSubmit}>
                         <Fields.email render={getEmailInput} />
                         <Fields.password render={getPasswordInput} />
-                        <button type='submit'>Log in</button>
+                        <button className='button button--cta' type='submit'>
+                            Log in
+                        </button>
                     </form>
                 )}
             />

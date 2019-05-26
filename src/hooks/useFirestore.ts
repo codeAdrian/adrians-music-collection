@@ -36,10 +36,12 @@ export const useFirestore = () => {
     }
 
     function getAlbumCatalog(
-        pageSize: number,
-        callback: (snap: firebase.firestore.QuerySnapshot) => void
+        callback: (snap: firebase.firestore.QuerySnapshot) => void,
+        pageSize?: number
     ) {
-        const albumRef = orderedAlbumCollection.limit(pageSize);
+        const albumRef = pageSize
+            ? orderedAlbumCollection.limit(pageSize)
+            : orderedAlbumCollection;
         executeQuery(albumRef, callback);
     }
 

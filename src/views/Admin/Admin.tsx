@@ -1,9 +1,9 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useEffect } from 'react';
 import defineForm from 'react-define-form';
 import { Input } from 'components';
 import { FieldRenderProps } from 'react-define-form';
-import { useFirebaseAuth, useFirestore } from 'hooks';
-import { AdminFormFields } from 'models';
+import { useFirebaseAuth, useFirestore, useFetchHandler } from 'hooks';
+import { AdminFormFields, Album } from 'models';
 
 const { Form, Fields } = defineForm(f => ({
     artist: f<string>(),
@@ -16,13 +16,22 @@ const { Form, Fields } = defineForm(f => ({
 type FormInput<T extends string | symbol> = FieldRenderProps<string, T, any>;
 
 const Admin: React.FC = () => {
-    const { addAlbumToCatalog } = useFirestore();
+    const { addAlbumToCatalog, getAlbumCatalog } = useFirestore();
+    const fetchHandlerApi = useFetchHandler<Album[]>([]);
+    const { handleFetch, apiData, isLoading, setIsLoading } = fetchHandlerApi;
     const { activeUser, signOut } = useFirebaseAuth();
+
+    useEffect(getAlbumData);
 
     return (
         <Fragment>
-            <button onClick={signOut}>Log out</button>
-            <div>Active user: {activeUser && activeUser.email}</div>
+            <div>
+                Active user: {activeUser && activeUser.email}(
+                <button className='button button--link' onClick={signOut}>
+                    Log out
+                </button>
+                )
+            </div>
             <Form
                 initialValues={{
                     artist: '',
@@ -39,12 +48,28 @@ const Admin: React.FC = () => {
                         <Fields.youtubeVideoId render={getVideoField} />
                         <Fields.discogsId render={getDiscogsField} />
                         <Fields.cover render={getCoverField} />
-                        <button type='submit'>Save</button>
+                        <button className='button button--cta' type='submit'>
+                            Save
+                        </button>
                     </form>
                 )}
             />
+            <div>
+                <pre>
+                    {apiData ? JSON.stringify(apiData, null, 2) : 'No Data'}
+                </pre>
+            </div>
         </Fragment>
     );
+
+    function parseAlbumData(snap: firebase.firestore.QuerySnapshot) {
+        const dataArray = snap.docs.map(doc => doc.data()) as Album[];
+        handleFetch(dataArray);
+    }
+
+    function getAlbumData() {
+        isLoading && getAlbumCatalog(parseAlbumData);
+    }
 
     function handleSubmit(values: AdminFormFields) {
         addAlbumToCatalog(values);

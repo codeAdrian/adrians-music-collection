@@ -6,4 +6,5 @@ export interface InputProps {
     required?: boolean;
     type?: string;
     hideLabel?: boolean;
+    className?: string;
 }

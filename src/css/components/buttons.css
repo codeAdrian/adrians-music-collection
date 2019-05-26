@@ -21,10 +21,20 @@
     display: inline-block;
 }
 
+.button--default {
+    background-color: var(--color__gray--8);
+    padding: var(--spacing__vertical--n1) var(--spacing__horizontal--1);
+    border: var(--border__width--medium) double var(--color__gray--1);
+}
+
 .button--cta {
     color: var(--color__gray--8);
     background-color: var(--color__cta);
     padding: var(--spacing__vertical--n1) var(--spacing__horizontal--1);
+}
+
+.button--link {
+    color: var(--color__cta);
 }
 
 .button--fixed {

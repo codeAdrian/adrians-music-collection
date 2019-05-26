@@ -33,3 +33,5 @@
 @import './modules/backToTop';
 @import './modules/loadMore';
 @import './modules/search';
+
+@import './views/about';

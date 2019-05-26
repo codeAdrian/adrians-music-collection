@@ -42,6 +42,7 @@ const Search = withRouter(({ history, location }) => {
                 type='search'
                 meta={meta}
                 required
+                className='search__input'
                 hideLabel
                 {...input}
             />
