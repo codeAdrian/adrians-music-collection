@@ -71,6 +71,7 @@ const About: React.FC = () => (
       <p className="paragraph">
         And somehow...{" "}
         <a
+          className="link--default"
           target="_blank"
           rel="noopener noreferrer"
           href="https://www.black-sabbath.com/2009/04/devil_you_know_cover_art_winners/"
