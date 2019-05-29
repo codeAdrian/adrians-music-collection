@@ -1,0 +1,6 @@
+.search__heading {
+  text-align: center;
+  padding-top: var(--spacing__vertical--1);
+  padding-right: var(--spacing__default--horizontal);
+  padding-left: var(--spacing__default--horizontal);
+}

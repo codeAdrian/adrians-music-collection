@@ -1,5 +1,5 @@
 export interface CoverProps {
-    offset: number;
+    offsetVertical: number;
     cover: string;
     artist: string;
     album: string;

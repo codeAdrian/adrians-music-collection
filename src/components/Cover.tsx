@@ -4,7 +4,7 @@ import { Loading } from 'components';
 import { CoverProps } from 'models';
 import { CLOUDINARY_API, CLOUDINARY_CONFIG, CLOUDINARY_MUSIC } from 'constant';
 
-const Cover: React.FC<CoverProps> = ({ offset, cover, artist, album }) => {
+const Cover: React.FC<CoverProps> = ({ offsetVertical, cover, artist, album }) => {
     const coverUrl = `${CLOUDINARY_API}/${CLOUDINARY_CONFIG}/${CLOUDINARY_MUSIC}/${cover}`;
     const alt = `${artist} - ${album} cover artwork`;
 
@@ -12,7 +12,7 @@ const Cover: React.FC<CoverProps> = ({ offset, cover, artist, album }) => {
         <figure className='cover'>
             <Loading className='cover__loading' />
             {cover && (
-                <LazyLoad offsetVertical={offset}>
+                <LazyLoad offsetVertical={offsetVertical}>
                     <img
                         className='image cover__image'
                         src={coverUrl}

@@ -66,7 +66,7 @@ const AlbumDetail: React.FC<AlbumProps> = ({ match }: AlbumProps) => {
                         album={album}
                         artist={artist}
                         cover={cover}
-                        offset={100}
+                        offsetVertical={768}
                     />
                     <article className='albumDetail__wrapper'>
                         <small className='small small--default'>Artist</small>

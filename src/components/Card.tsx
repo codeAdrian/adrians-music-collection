@@ -9,7 +9,7 @@ const Card: React.FC<Album> = ({ album, artist, cover, discogsId }) => (
             className='card__wrapper link--reset'
             to={`/albums/album/${discogsId}`}
         >
-            <Cover offset={500} cover={cover} artist={artist} album={album} />
+            <Cover offsetVertical={768} cover={cover} artist={artist} album={album} />
 
             <div className='card__info container--pattern'>
                 <hr className='divider card__divider' />
