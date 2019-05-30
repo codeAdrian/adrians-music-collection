@@ -1,27 +1,36 @@
 .cover {
-    margin: 0;
-    position: relative;
-    background-color: var(--color__gray--6);
-    padding-bottom: 100%;
+  margin: 0;
+  position: relative;
+  background-color: var(--color__gray--6);
+  padding-bottom: 100%;
 }
 
 .cover__image {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: var(--level__middle--below);
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: var(--level__middle--below);
+}
+
+.cover__lazy {
+  opacity: 0;
+  transition: opacity 1s ease;
+
+  &.is-visible {
+    opacity: 1;
+  }
 }
 
 .cover__loading {
-    position: absolute;
-    left: 0;
-    right: 0;
-    margin-left: auto;
-    margin-right: auto;
-    top: 50%;
-    transform: translateY(-50%);
-    text-align: center;
-    font-size: var(--typography__xlarge);
-    z-index: var(--level__below);
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  top: 50%;
+  transform: translateY(-50%);
+  text-align: center;
+  font-size: var(--typography__xlarge);
+  z-index: var(--level__below);
 }

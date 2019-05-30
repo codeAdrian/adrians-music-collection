@@ -1,0 +1,6 @@
+.albumDetail__back {
+  bottom: var(--spacing__vertical--1);
+  left: var(--spacing__horizontal--1);
+  padding: var(--spacing__vertical--n4) 0;
+  text-align: center;
+}

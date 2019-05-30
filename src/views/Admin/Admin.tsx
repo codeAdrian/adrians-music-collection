@@ -25,38 +25,45 @@ const Admin: React.FC = () => {
 
   return (
     <Fragment>
-      <div>
-        Active user: {activeUser && activeUser.email}(
-        <button className="button button--link" onClick={signOut}>
-          Log out
-        </button>
-        )
-      </div>
-      <Form
-        initialValues={{
-          artist: "",
-          album: "",
-          youtubeVideoId: "",
-          discogsId: "",
-          cover: ""
-        }}
-        onSubmit={handleSubmit}
-        render={({ handleSubmit }) => (
-          <form onSubmit={handleSubmit}>
-            <Fields.artist render={getArtistField} />
-            <Fields.album render={getAlbumField} />
-            <Fields.youtubeVideoId render={getVideoField} />
-            <Fields.discogsId render={getDiscogsField} />
-            <Fields.cover render={getCoverField} />
-            <button className="button button--cta" type="submit">
-              Save
-            </button>
-          </form>
-        )}
-      />
-      <div>
-        <pre>{apiData ? JSON.stringify(apiData, null, 2) : "No Data"}</pre>
-      </div>
+      <h1 className="heading heading--level2 admin__heading">Admin</h1>
+      <section className="admin">
+        <Form
+          initialValues={{
+            artist: "",
+            album: "",
+            youtubeVideoId: "",
+            discogsId: "",
+            cover: ""
+          }}
+          onSubmit={handleSubmit}
+          render={({ handleSubmit }) => (
+            <div className="admin__col admin__col--form">
+              <div className="admin__header">
+                Active user: {activeUser && activeUser.email}(
+                <button className="button button--link" onClick={signOut}>
+                  Log out
+                </button>
+                )
+              </div>
+              <form className="admin__form" onSubmit={handleSubmit}>
+                <Fields.artist render={getArtistField} />
+                <Fields.album render={getAlbumField} />
+                <Fields.youtubeVideoId render={getVideoField} />
+                <Fields.discogsId render={getDiscogsField} />
+                <Fields.cover render={getCoverField} />
+                <button className="button button--cta" type="submit">
+                  Save
+                </button>
+              </form>
+            </div>
+          )}
+        />
+        <div className="admin__col admin__col--data">
+          <pre className="admin__data">
+            {apiData ? JSON.stringify(apiData, null, 2) : "No Data"}
+          </pre>
+        </div>
+      </section>
     </Fragment>
   );
 

@@ -52,16 +52,10 @@ const About: React.FC = () => (
       <p className="paragraph">
         In early 2009. I was really active on an Black Sabbath fan site. An
         competition was announced a few months before album release date.
-        Several lucky winners would get the following award:
+        Several lucky winners would get the following award: New album and an
+        booklet with autographs by all members of the band.
       </p>
-      <p className="paragraph">
-        New album and an booklet with autographs by all members of the band:{" "}
-        <br />
-        Tony Iommi - the creator of heavy metal and a guitar legend, <br />
-        Ronnie James Dio - arguably one of the most powerful voices in metal
-        history, <br /> Geezer Butler - one of the best bass players in rock and
-        metal, <br /> Vinny Appice - an absolutely great drummer.
-      </p>
+
       <p className="paragraph">
         Competition rules required people to submit their design on the album
         artwork. Even though this artwork won't be used on the album, the

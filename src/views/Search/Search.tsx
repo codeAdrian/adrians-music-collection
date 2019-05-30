@@ -1,6 +1,6 @@
 import React, { useEffect, Fragment } from "react";
 import { AlbumList } from "components";
-import { withRouter } from "react-router-dom";
+import { withRouter, Link } from "react-router-dom";
 import { useFirestore, useFetchHandler } from "hooks";
 import { Album } from "models";
 
@@ -30,6 +30,17 @@ const Search = withRouter(({ location }) => {
         {`Search results for "${searchQuery}" (exact matches)`}
       </h1>
       <AlbumList albums={apiData} />
+      {apiData.length === 0 && (
+        <div>
+          Search didn't return any results. Make sure you have typed artist's
+          exact name. You can repeat your search or
+        </div>
+      )}
+      <div>
+        <Link to="/albums" className="button button--linkToButton button--cta">
+          View All Albums
+        </Link>
+      </div>
     </Fragment>
   );
 

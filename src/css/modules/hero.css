@@ -2,6 +2,8 @@
   display: flex;
   align-items: flex-end;
   min-height: calc(100vh - var(--spacing__vertical--5));
+  padding-left: var(--spacing__default--horizontal);
+  padding-right: var(--spacing__default--horizontal);
 }
 
 .hero__wrapper--content {
@@ -20,10 +22,11 @@
   width: auto;
   padding-top: var(--spacing__vertical--1);
   padding-left: var(--spacing__horizontal--3);
-  max-height: calc(100vh - var(--spacing__vertical--2));
+  max-height: calc(100vh - var(--spacing__vertical--5));
 }
 
 .hero__text {
-  max-width: 520px;
-  font-size: var(--typography__larger);
+  max-width: 400px;
+  font-size: var(--typography__medium);
+  line-height: calc(var(--spacing__vertical--1) + var(--spacing__vertical--n1));
 }

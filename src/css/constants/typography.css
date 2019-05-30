@@ -1,15 +1,16 @@
-@import '../constants/media-queries';
+@import "../constants/media-queries";
 
 :root {
-    --typography__lineHeight: 1.333;
-    --typography__fontSize--px: 18;
-    --typography__scale: 1.333;
+  --typography__lineHeight: 1.333;
+  --typography__fontSize--px: 18;
+  --typography__scale: 1.333;
 
-    --typography__fontFamily: 'Germania One', Arial, sans-serif;
+  --typography__fontFamily: "Germania One", Arial, sans-serif;
+  --typography__fontFamily--secondary: "Open Sans", Arial, sans-serif;
 
-    --typography__weight--normal: 400;
+  --typography__weight--normal: 400;
 
-    @media (--mq__tablet--min) {
-        --typography__fontSize--px: 24;
-    }
+  @media (--mq__tablet--min) {
+    --typography__fontSize--px: 24;
+  }
 }

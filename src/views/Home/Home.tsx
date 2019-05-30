@@ -7,7 +7,7 @@ const Home: React.FC = () => (
   <section className="hero container--pattern">
     <article className="hero__wrapper hero__wrapper--content">
       <div className="hero__inner">
-        <h2 className="heading heading--level1">Long live rock 'n' roll</h2>
+        <h2 className="heading heading--level2">Long live rock 'n' roll</h2>
         <p className="paragraph hero__text">
           Collecting oldschool rock and metal CDs since childhood. Proud owner
           of some of the rare releases.
