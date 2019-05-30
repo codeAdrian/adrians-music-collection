@@ -1,46 +1,54 @@
+@import "../constants/media-queries";
+
 .button {
-    border: none;
-    margin: 0;
-    padding: 0;
-    width: auto;
-    overflow: visible;
-    outline: 0;
-    background: transparent;
-    color: inherit;
-    font: inherit;
-    line-height: normal;
-    -webkit-font-smoothing: inherit;
-    -moz-osx-font-smoothing: inherit;
-    -webkit-appearance: none;
-    text-align: center;
-    cursor: pointer;
+  border: none;
+  margin: 0;
+  padding: 0;
+  width: auto;
+  overflow: visible;
+  outline: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  line-height: normal;
+  -webkit-font-smoothing: inherit;
+  -moz-osx-font-smoothing: inherit;
+  -webkit-appearance: none;
+  text-align: center;
+  cursor: pointer;
 }
 
 .button--linkToButton {
-    text-decoration: none;
-    display: inline-block;
+  text-decoration: none;
+  display: inline-block;
 }
 
 .button--default {
-    background-color: var(--color__gray--8);
-    padding: var(--spacing__vertical--n1) var(--spacing__horizontal--1);
-    border: var(--border__width--medium) double var(--color__gray--1);
+  background-color: var(--color__gray--8);
+  padding: var(--spacing__vertical--n1) var(--spacing__horizontal--1);
+  border: var(--border__width--medium) double var(--color__gray--1);
 }
 
 .button--cta {
-    color: var(--color__gray--8);
-    background-color: var(--color__cta);
-    padding: var(--spacing__vertical--n1) var(--spacing__horizontal--1);
+  color: var(--color__gray--8);
+  background-color: var(--color__cta);
+  padding: var(--spacing__vertical--n1) var(--spacing__horizontal--1);
 }
 
 .button--link {
-    color: var(--color__cta);
+  color: var(--color__cta);
 }
 
 .button--fixed {
-    position: fixed;
-    z-index: var(--level__middle);
-    background-color: var(--color__gray--8);
-    transition: bottom 0.6s ease;
-    backface-visibility: hidden;
+  position: fixed;
+  z-index: var(--level__middle);
+  background-color: var(--color__gray--8);
+  transition: bottom 0.8s ease;
+  backface-visibility: hidden;
+}
+
+@media (--mq__desktop--min) {
+  .button--fixed {
+    transition-duration: 0.6s;
+  }
 }

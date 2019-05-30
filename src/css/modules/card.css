@@ -1,5 +1,7 @@
+@import "../constants/media-queries";
+
 .card {
-  lost-column: 1/4;
+  lost-column: 1/1;
   padding: calc(var(--spacing__vertical--n1) - var(--border__width--medium))
     var(--spacing__horizontal--n2);
 }
@@ -36,5 +38,23 @@
   }
   to {
     opacity: 1;
+  }
+}
+
+@media (--mq__mobileLandscape--min) {
+  .card {
+    lost-column: 1/2;
+  }
+}
+
+@media (--mq__tablet--min) {
+  .card {
+    lost-column: 1/3;
+  }
+}
+
+@media (--mq__desktop--min) {
+  .card {
+    lost-column: 1/4;
   }
 }

@@ -1,60 +1,61 @@
 .input {
-    padding-bottom: var(--spacing__vertical--n1);
+  padding-bottom: var(--spacing__vertical--n1);
 }
 
 .input__label {
-    display: block;
-    padding-left: var(--spacing__horizontal--1);
+  display: block;
+  padding-left: var(--spacing__horizontal--1);
 }
 
 .input__wrapper {
-    display: flex;
-    align-items: center;
-    padding-left: var(--spacing__horizontal--n4);
-    padding-right: var(--spacing__horizontal--n4);
+  display: flex;
+  align-items: center;
+  padding-left: var(--spacing__horizontal--n4);
+  padding-right: var(--spacing__horizontal--n4);
 
-    &::before,
-    &::after {
-        content: '';
-        background-color: var(--color__gray--8);
-        z-index: var(--level__bottom);
-        display: inline-block;
-        transform: rotateZ(45deg);
-        width: var(--spacing__horizontal--1);
-        height: var(--spacing__vertical--1);
-        border: var(--border__width--medium) double var(--color__gray--1);
-    }
+  &::before,
+  &::after {
+    content: "";
+    background-color: var(--color__gray--8);
+    z-index: var(--level__bottom);
+    display: inline-block;
+    transform: rotateZ(45deg);
+    width: var(--spacing__horizontal--1);
+    height: var(--spacing__vertical--1);
+    border: var(--border__width--medium) double var(--color__gray--1);
+  }
 
-    &::after {
-        margin-left: calc(-1 * var(--spacing__horizontal--n1));
-    }
+  &::after {
+    margin-left: calc(-1 * var(--spacing__horizontal--n1));
+  }
 
-    &::before {
-        margin-right: calc(-1 * var(--spacing__horizontal--n1));
-    }
+  &::before {
+    margin-right: calc(-1 * var(--spacing__horizontal--n1));
+  }
 }
 
 .input__element {
-    background-color: var(--color__gray--8);
-    z-index: var(--level__middle);
-    border: var(--border__width--medium) double var(--color__gray--1);
+  background-color: var(--color__gray--8);
+  z-index: var(--level__middle);
+  width: 100%;
+  border: var(--border__width--medium) double var(--color__gray--1);
 
-    &,
-    &:-webkit-autofill,
-    &:-webkit-autofill:hover,
-    &:-webkit-autofill:focus :-webkit-autofill {
-        -webkit-text-fill-color: var(--color__gray--1);
-        -webkit-box-shadow: 0 0 0px 1000px var(--color__gray--8) inset;
-        padding: var(--spacing__vertical--n4) var(--spacing__horizontal--n2);
-        line-height: var(--spacing__vertical--n2);
-        font-family: inherit;
-        font-size: inherit;
-    }
+  &,
+  &:-webkit-autofill,
+  &:-webkit-autofill:hover,
+  &:-webkit-autofill:focus :-webkit-autofill {
+    -webkit-text-fill-color: var(--color__gray--1);
+    -webkit-box-shadow: 0 0 0px 1000px var(--color__gray--8) inset;
+    padding: var(--spacing__vertical--n4) var(--spacing__horizontal--n2);
+    line-height: var(--spacing__vertical--n2);
+    font-family: inherit;
+    font-size: inherit;
+  }
 
-    &:hover,
-    &:active,
-    &:focus {
-        outline: 0;
-        border-color: var(--color__gray--1);
-    }
+  &:hover,
+  &:active,
+  &:focus {
+    outline: 0;
+    border-color: var(--color__gray--1);
+  }
 }

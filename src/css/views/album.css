@@ -1,6 +1,29 @@
+@import "../constants/media-queries";
+
 .albumDetail__back {
-  bottom: var(--spacing__vertical--1);
+  animation: popUp 1s 1s ease-in-out forwards;
+  bottom: calc(-1 * var(--spacing__vertical--5));
   left: var(--spacing__horizontal--1);
   padding: var(--spacing__vertical--n4) 0;
   text-align: center;
+}
+
+@keyframes popUp {
+  from {
+    bottom: calc(-1 * var(--spacing__vertical--5));
+  }
+  to {
+    bottom: var(--spacing__vertical--3);
+  }
+}
+
+@media (--mq__desktop--min) {
+  @keyframes popUp {
+    from {
+      bottom: calc(-1 * var(--spacing__vertical--5));
+    }
+    to {
+      bottom: var(--spacing__vertical--1);
+    }
+  }
 }

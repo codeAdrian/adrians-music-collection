@@ -3,6 +3,7 @@
 }
 
 .search__content {
+  width: 320px;
   position: absolute;
   top: var(--spacing__vertical--2);
   right: 0;
