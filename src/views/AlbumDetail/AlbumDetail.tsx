@@ -20,6 +20,11 @@ const firebaseSkeleton = new Album({
 
 const discogsSkeleton = new AlbumDetails({
   artists_sort: "Loading",
+  community: {
+    rating: {
+      average: 5
+    }
+  },
   extraartists: [...new Array(5)].map((item, index) => ({
     name: "Loading",
     role: "Loading"
@@ -65,8 +70,11 @@ const AlbumDetail: React.FC<AlbumProps> = ({ match }: AlbumProps) => {
     labels,
     tracklist,
     extraartists,
+    community,
     released
   } = discogsApi.apiData;
+
+  const { rating } = community;
 
   const { album, artist, cover, youtubeVideoId } =
     firebaseApi.apiData || firebaseSkeleton;
@@ -97,13 +105,16 @@ const AlbumDetail: React.FC<AlbumProps> = ({ match }: AlbumProps) => {
               <Fragment>
                 <small className="small small--default">Release Date</small>
                 <h3 className="heading">{released}</h3>
-
                 <List title={"Genre"} array={styles} listClass="genre" />
                 <List
                   title={"CD Format"}
                   array={formats[0].descriptions}
                   listClass="format"
                 />
+                <small className="small small--default">Average rating</small>
+                <h3 className="heading heading--level5">
+                  {rating.average} / 5
+                </h3>
                 <List
                   title={"Catalog Number"}
                   array={labels}

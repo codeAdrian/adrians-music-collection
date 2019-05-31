@@ -1,6 +1,11 @@
 export interface AlbumDetails {
   artists_sort: string;
   released: string;
+  community: {
+    rating: {
+      average: number;
+    };
+  };
   extraartists: Artist[];
   formats: Format[];
   styles: string[];
@@ -43,12 +48,14 @@ export class AlbumDetails {
     released,
     formats,
     styles,
+    community,
     labels,
     genres,
     tracklist
   }: AlbumDetails) {
     this.artists_sort = artists_sort;
     this.extraartists = extraartists;
+    this.community = community;
     this.formats = formats;
     this.released = released;
     this.styles = styles;
