@@ -1,0 +1,11 @@
+.notFound {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: calc(100vh - var(--spacing__vertical--5));
+}
+
+.notFound {
+  margin-bottom: 0;
+}

@@ -1,4 +1,5 @@
 import React, { useEffect, Fragment } from "react";
+import { Redirect } from "react-router-dom";
 import {
   useFetchHandler,
   useFirestore,
@@ -52,10 +53,8 @@ const AlbumDetail: React.FC<AlbumProps> = ({ match }: AlbumProps) => {
   useEffect(getFirebaseData, []);
   useEffect(getDiscogsData, []);
 
-  const isLoading = firebaseApi.isLoading || discogsApi.isLoading;
-
-  if (!isLoading && (!discogsApi.apiData || !firebaseApi.apiData))
-    return <div>Error</div>;
+  if (!discogsApi.apiData || !firebaseApi.apiData)
+    return <Redirect to="/notFound" />;
 
   const discogsDataReady = discogsApi.apiData && !discogsApi.isLoading;
   const shouldDisplayDiscogsData = isOnline || discogsDataReady;
@@ -69,7 +68,8 @@ const AlbumDetail: React.FC<AlbumProps> = ({ match }: AlbumProps) => {
     released
   } = discogsApi.apiData;
 
-  const { album, artist, cover, youtubeVideoId } = firebaseApi.apiData;
+  const { album, artist, cover, youtubeVideoId } =
+    firebaseApi.apiData || firebaseSkeleton;
 
   return (
     <Fragment>

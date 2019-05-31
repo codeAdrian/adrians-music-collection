@@ -21,7 +21,12 @@ export const useFirestore = () => {
     ref: firebase.firestore.Query,
     callback: (snap: firebase.firestore.QuerySnapshot) => void
   ) {
-    ref.get(getOptions).then(callback);
+    ref
+      .get(getOptions)
+      .then(callback)
+      .catch(function(error) {
+        console.error("Error occured", error);
+      });
   }
 
   function addAlbumToCatalog(values: AdminFormFields) {
