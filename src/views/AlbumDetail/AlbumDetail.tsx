@@ -55,8 +55,6 @@ const AlbumDetail: React.FC<AlbumProps> = ({ match }: AlbumProps) => {
     released
   } = discogsApi.apiData;
 
-  console.log("discogsApi.apiData", discogsApi.apiData);
-
   const { album, artist, cover, youtubeVideoId } = firebaseApi.apiData;
 
   return (

@@ -25,6 +25,10 @@
   padding-bottom: var(--spacing__vertical--1);
 }
 
+.listWrapper--catalog {
+  padding-bottom: 0;
+}
+
 .list--catalog {
   display: block;
   padding-bottom: var(--spacing__vertical--n1);

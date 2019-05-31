@@ -16,12 +16,16 @@ const skeletonArray: Album[] = Array.from({ length: PAGE_SIZE }).map(
 );
 
 const Albums: React.FC = () => {
+  const { sessionStorage } = window;
+  const savedPageSize = sessionStorage.getItem("ALBUMS_PAGE_SIZE");
   const {
     canLoadMore,
     currentPageSize,
     setCurrentPageSize,
     setArrayLength
-  } = useInfiniteLoader(PAGE_SIZE);
+  } = useInfiniteLoader(
+    (savedPageSize && parseInt(savedPageSize)) || PAGE_SIZE
+  );
   const { getAlbumCatalog } = useFirestore();
   const fetchHandlerApi = useFetchHandler<Album[]>([]);
   const { handleFetch, apiData, isLoading, setIsLoading } = fetchHandlerApi;
@@ -58,7 +62,9 @@ const Albums: React.FC = () => {
 
   function handleLoadMore() {
     if (!isLoading) {
-      setCurrentPageSize(currentPageSize + PAGE_SIZE);
+      const newPageSize = currentPageSize + PAGE_SIZE;
+      setCurrentPageSize(newPageSize);
+      sessionStorage.setItem("ALBUMS_PAGE_SIZE", newPageSize.toString());
       setIsLoading(true);
     }
   }

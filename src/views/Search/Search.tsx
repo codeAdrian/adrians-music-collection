@@ -31,13 +31,16 @@ const Search = withRouter(({ location }) => {
       </h1>
       <AlbumList albums={apiData} />
       {apiData.length === 0 && (
-        <div>
+        <div className="search__content--noResults">
           Search didn't return any results. Make sure you have typed artist's
           exact name. You can repeat your search or
         </div>
       )}
-      <div>
-        <Link to="/albums" className="button button--linkToButton button--cta">
+      <div className="search__actions">
+        <Link
+          to="/albums"
+          className="search__button--viewAll button button--linkToButton button--cta"
+        >
           View All Albums
         </Link>
       </div>
