@@ -1,5 +1,14 @@
 import React from "react";
-import { InputProps } from "models";
+import { FieldRenderPropsMeta } from "react-define-form/lib/FieldProps";
+
+interface InputProps {
+  meta: FieldRenderPropsMeta<any>;
+  label: string;
+  required?: boolean;
+  type?: string;
+  hideLabel?: boolean;
+  className?: string;
+}
 
 const Input: React.FC<InputProps> = ({
   label,

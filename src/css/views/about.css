@@ -10,7 +10,7 @@
 }
 
 .about__wrapper {
-  max-width: var(--container--narrow);
+  max-width: var(--container--normal);
   margin: 0 auto;
   background-color: var(--color__gray--8);
   padding: var(--spacing__vertical--1) var(--spacing__default--horizontal);
