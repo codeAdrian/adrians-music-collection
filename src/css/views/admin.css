@@ -1,0 +1,38 @@
+.admin__heading {
+  padding-top: var(--spacing__vertical--1);
+  text-align: center;
+  padding-left: var(--spacing__default--horizontal);
+  padding-right: var(--spacing__default--horizontal);
+}
+
+.admin {
+  display: flex;
+  flex-direction: row-reverse;
+  padding-left: var(--spacing__default--horizontal);
+  padding-right: var(--spacing__default--horizontal);
+}
+
+.admin__col {
+  flex-grow: 0;
+  flex-basis: 50%;
+  width: 50%;
+}
+
+.admin__col--data {
+  padding-right: var(--spacing__horizontal--2);
+}
+
+.admin__data {
+  max-height: 100vh;
+  background-color: var(--color__gray--6);
+  padding: var(--spacing__vertical--1) var(--spacing__default--horizontal);
+  overflow: scroll;
+}
+
+.admin__form {
+  max-width: var(--container--smaller);
+  padding: var(--spacing__vertical--1) var(--spacing__default--horizontal);
+  border: var(--border__width--medium) double var(--color__gray--1);
+  background-color: var(--color__gray--8);
+  margin-top: var(--spacing__vertical--1);
+}

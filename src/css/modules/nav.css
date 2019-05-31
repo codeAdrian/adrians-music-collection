@@ -1,0 +1,45 @@
+@import "../constants/media-queries";
+
+.nav {
+  display: flex;
+  flex-grow: 1;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  min-height: var(--spacing__vertical--2);
+}
+
+.nav__link {
+  lost-column: 1/3;
+  lost-flex-container: column;
+  padding-top: var(--spacing__vertical--n1);
+  padding-bottom: var(--spacing__vertical--n1);
+}
+
+.nav__link--default {
+  transition: background-color 0.5s ease;
+  text-align: center;
+
+  &:hover,
+  &:active {
+    background-color: var(--color__gray--2);
+  }
+}
+
+.nav__link--active {
+  &,
+  &:hover,
+  &:active {
+    background-color: var(--color__gray--3);
+  }
+}
+
+@media (--mq__desktop--min) {
+  .nav {
+    padding-right: var(--spacing__horizontal--n4);
+    position: relative;
+    min-width: var(--container--smaller);
+    min-height: 0;
+  }
+}

@@ -1,0 +1,37 @@
+@import "../constants/media-queries";
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+.body {
+  margin: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+  background-color: var(--color__gray--7);
+  padding-bottom: var(--spacing__vertical--2);
+}
+
+.main {
+  min-height: calc(100vh - var(--spacing__vertical--3));
+  padding-top: var(--spacing__vertical--2);
+}
+
+.hidden {
+  clip: rect(1px, 1px, 1px, 1px);
+  clip-path: inset(50%);
+  height: 1px;
+  width: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+}
+
+@media (--mq__desktop--min) {
+  .body {
+    padding-bottom: 0;
+  }
+}

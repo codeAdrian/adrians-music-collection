@@ -1,0 +1,23 @@
+@import "../constants/media-queries";
+
+.albumDetail__wrapper {
+  padding: var(--spacing__vertical--1) var(--spacing__default--horizontal);
+}
+
+.albumDetail__aside {
+  text-align: center;
+}
+
+@media (--mq__tablet--min) {
+  .albumDetail {
+    lost-center: 100%;
+  }
+
+  .albumDetail__aside {
+    lost-column: 36/100;
+    text-align: right;
+  }
+  .albumDetail__main {
+    lost-column: 64/100;
+  }
+}

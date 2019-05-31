@@ -1,0 +1,15 @@
+.loading__icon {
+    animation: rotation 1s ease infinite;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    display: inline-block;
+}
+
+@keyframes rotation {
+    from {
+        transform: rotateZ(0deg);
+    }
+    to {
+        transform: rotateZ(359deg);
+    }
+}

@@ -1,0 +1,24 @@
+:root {
+  --color__gray--1: #202020;
+  --color__gray--2: #363636;
+  --color__gray--3: #555;
+  --color__gray--4: #888;
+  --color__gray--5: #ccc;
+  --color__gray--6: #ddd;
+  --color__gray--7: #f0f0f0;
+  --color__gray--8: #fff;
+
+  --color__cta: #b81d18;
+  --color__cta--darker: #951813;
+
+  --color__pattern: linear-gradient(
+    -45deg,
+    var(--color__gray--6) 25%,
+    transparent 0,
+    transparent 50%,
+    var(--color__gray--6) 0,
+    var(--color__gray--6) 75%,
+    transparent 0,
+    transparent
+  );
+}

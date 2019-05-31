@@ -1,0 +1,8 @@
+:root {
+  --container--smallest: calc((320 / var(--typography__fontSize--px)) * 1rem);
+  --container--smaller: calc((420 / var(--typography__fontSize--px)) * 1rem);
+  --container--small: calc((568 / var(--typography__fontSize--px)) * 1rem);
+  --container--narrow: calc((768 / var(--typography__fontSize--px)) * 1rem);
+  --container--normal: calc((1024 / var(--typography__fontSize--px)) * 1rem);
+  --container--wide: calc((1366 / var(--typography__fontSize--px)) * 1rem);
+}

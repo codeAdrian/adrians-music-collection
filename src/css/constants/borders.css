@@ -1,0 +1,5 @@
+:root {
+    --border__width--thin: calc(var(--typography__fontSize) * 1rem * 1 / 16);
+    --border__width--medium: var(--spacing__vertical--n3);
+    --border__width--thick: var(--spacing__vertical--n2);
+}

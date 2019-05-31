@@ -1,0 +1,23 @@
+@import "../constants/media-queries";
+
+.loadMore__button {
+  bottom: calc(-1 * var(--spacing__vertical--4));
+  left: var(--spacing__vertical--1);
+  font-size: var(--typography__medium);
+  backface-visibility: hidden;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  transition-delay: 1s;
+}
+
+.loadMore__button--active {
+  bottom: var(--spacing__vertical--3);
+  transition-delay: 0s;
+}
+
+@media (--mq__desktop--min) {
+  .loadMore__button--active {
+    bottom: var(--spacing__vertical--1);
+  }
+}

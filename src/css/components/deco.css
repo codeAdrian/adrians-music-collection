@@ -1,0 +1,12 @@
+.deco {
+    height: var(--spacing__vertical--2);
+    width: var(--spacing__vertical--2);
+    display: inline-block;
+    border: var(--border__width--thick) double var(--color__gray--1);
+    transform: rotateZ(45deg);
+    backface-visibility: hidden;
+}
+
+.deco__content {
+    transform: rotateZ(-45deg);
+}

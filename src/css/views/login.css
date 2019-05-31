@@ -1,0 +1,22 @@
+.login {
+  display: flex;
+  justify-content: center;
+  padding: var(--spacing__vertical--2) var(--spacing__default--horizontal);
+}
+
+.login__wrapper {
+  max-width: var(--container--narrows);
+  padding: var(--spacing__vertical--1) var(--spacing__default--horizontal);
+  border: var(--border__width--medium) double var(--color__gray--1);
+  background-color: var(--color__gray--8);
+}
+
+.login__form {
+  display: block;
+}
+
+.login__button {
+  margin-top: var(--spacing__vertical--n1);
+  width: 100%;
+  display: block;
+}

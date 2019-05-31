@@ -1,0 +1,31 @@
+@import "../constants/media-queries";
+
+.search__heading {
+  text-align: center;
+  padding-top: var(--spacing__vertical--1);
+  padding-right: var(--spacing__default--horizontal);
+  padding-left: var(--spacing__default--horizontal);
+}
+
+.search__content--noResults {
+  max-width: var(--container--narrow);
+  padding-left: var(--spacing__default--horizontal);
+  padding-right: var(--spacing__default--horizontal);
+  text-align: center;
+  margin: 0 auto;
+}
+
+.search__actions {
+  padding: var(--spacing__vertical--1) var(--spacing__default--horizontal);
+  text-align: center;
+}
+
+.search__button--viewAll {
+  width: 100%;
+}
+
+@media (--mq__mobileLandscape--min) {
+  .search__button--viewAll {
+    width: auto;
+  }
+}

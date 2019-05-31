@@ -1,0 +1,7 @@
+:root {
+    --level__bottom: 1;
+    --level__middle--below: 2;
+    --level__middle: 3;
+    --level__middle--top: 4;
+    --level__top: 5;
+}

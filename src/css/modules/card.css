@@ -1,0 +1,64 @@
+@import "../constants/media-queries";
+
+.card {
+  lost-column: 1/1;
+  padding: calc(var(--spacing__vertical--n1) - var(--border__width--medium))
+    var(--spacing__horizontal--n2);
+}
+
+.card--loading {
+  pointer-events: none;
+}
+
+.card__wrapper {
+  display: flex;
+  flex-direction: column;
+  border: var(--border__width--medium) double var(--color__gray--1);
+  height: 100%;
+}
+
+.card__info {
+  padding: var(--spacing__vertical--1) var(--spacing__vertical--n2) 0;
+  flex-grow: 1;
+  text-align: center;
+  position: relative;
+}
+
+.card__divider {
+  position: absolute;
+  z-index: var(--level__middle);
+  top: 0;
+  left: calc(-0.25 * var(--border__width--medium));
+  right: calc(-0.25 * var(--border__width--medium));
+}
+
+.card__title {
+  animation: fadeIn 1s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@media (--mq__mobileLandscape--min) {
+  .card {
+    lost-column: 1/2;
+  }
+}
+
+@media (--mq__tablet--min) {
+  .card {
+    lost-column: 1/3;
+  }
+}
+
+@media (--mq__desktop--min) {
+  .card {
+    lost-column: 1/4;
+  }
+}

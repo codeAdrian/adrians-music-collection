@@ -1,0 +1,16 @@
+@import "../constants/media-queries";
+
+.backToTop {
+  bottom: calc(-1 * var(--spacing__vertical--4));
+  right: var(--spacing__vertical--1);
+}
+
+.backToTop--active {
+  bottom: var(--spacing__vertical--3);
+}
+
+@media (--mq__desktop--min) {
+  .backToTop--active {
+    bottom: var(--spacing__vertical--1);
+  }
+}
