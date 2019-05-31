@@ -78,10 +78,10 @@
 
 @media (--mq__desktop--min) {
   .listWrapper--trackList {
-    max-width: 568px;
+    max-width: var(--container--small);
   }
 
   .listWrapper--artist {
-    max-width: 568px;
+    max-width: var(--container--small);
   }
 }

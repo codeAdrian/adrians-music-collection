@@ -7,6 +7,7 @@
 @import "./constants/borders";
 @import "./constants/spacing";
 @import "./constants/typography";
+@import "./constants/containers";
 
 @import "./components/page";
 @import "./components/typography";

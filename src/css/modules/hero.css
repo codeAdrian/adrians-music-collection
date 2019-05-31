@@ -8,7 +8,7 @@
 
 .hero__inner {
   padding-bottom: var(--spacing__vertical--2);
-  max-width: 568px;
+  max-width: var(--container--small);
   margin-left: auto;
   margin-right: auto;
   text-align: center;
@@ -27,7 +27,7 @@
 }
 
 .hero__image {
-  max-width: 420px;
+  max-width: var(--container--smaller);
   margin-left: auto;
   margin-right: auto;
 }
@@ -60,6 +60,6 @@
   }
 
   .hero__text {
-    max-width: 400px;
+    max-width: var(--container--smaller);
   }
 }

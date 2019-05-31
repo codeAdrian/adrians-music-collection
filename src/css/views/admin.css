@@ -30,7 +30,7 @@
 }
 
 .admin__form {
-  max-width: 420px;
+  max-width: var(--container--smaller);
   padding: var(--spacing__vertical--1) var(--spacing__default--horizontal);
   border: var(--border__width--medium) double var(--color__gray--1);
   background-color: var(--color__gray--8);

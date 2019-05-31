@@ -11,7 +11,7 @@ const Input: React.FC<InputProps> = ({
   <div className="input">
     <label className={hideLabel ? "hidden" : "input__label"}>{label}</label>
     <div className={`${className ? className : "input__wrapper"}`}>
-      <input autoComplete="off" className="input__element" {...rest} />
+      <input className="input__element" {...rest} />
     </div>
     {!hideLabel && meta.touched && meta.error && <span>{meta.error}</span>}
   </div>

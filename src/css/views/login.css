@@ -5,7 +5,7 @@
 }
 
 .login__wrapper {
-  max-width: 768px;
+  max-width: var(--container--narrows);
   padding: var(--spacing__vertical--1) var(--spacing__default--horizontal);
   border: var(--border__width--medium) double var(--color__gray--1);
   background-color: var(--color__gray--8);

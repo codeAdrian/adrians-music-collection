@@ -39,7 +39,7 @@
   .nav {
     padding-right: var(--spacing__horizontal--n4);
     position: relative;
-    min-width: 420px;
+    min-width: var(--container--smaller);
     min-height: 0;
   }
 }

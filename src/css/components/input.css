@@ -46,8 +46,10 @@
   &:-webkit-autofill:focus :-webkit-autofill {
     -webkit-text-fill-color: var(--color__gray--1);
     -webkit-box-shadow: 0 0 0px 1000px var(--color__gray--8) inset;
-    padding: var(--spacing__vertical--n4) var(--spacing__horizontal--n2);
-    line-height: var(--spacing__vertical--n2);
+    padding: 0 var(--spacing__horizontal--n2);
+    line-height: calc(
+      var(--spacing__vertical--1) + var(--spacing__vertical--n1)
+    );
     font-family: inherit;
     font-size: inherit;
   }
