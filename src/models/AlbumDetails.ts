@@ -4,7 +4,7 @@ export interface AlbumDetails {
   extraartists: Artist[];
   formats: Format[];
   styles: string[];
-  labels: string[];
+  labels: Label[];
   genres: string[];
   tracklist: TrackList[];
 }
@@ -15,6 +15,11 @@ export interface AlbumProps {
       id: string;
     };
   };
+}
+
+export interface Label {
+  name: string;
+  catno: string;
 }
 
 export interface TrackList {
@@ -35,6 +40,7 @@ export class AlbumDetails {
   constructor({
     artists_sort,
     extraartists,
+    released,
     formats,
     styles,
     labels,
@@ -44,6 +50,7 @@ export class AlbumDetails {
     this.artists_sort = artists_sort;
     this.extraartists = extraartists;
     this.formats = formats;
+    this.released = released;
     this.styles = styles;
     this.labels = labels;
     this.genres = genres;

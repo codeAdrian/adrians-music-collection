@@ -1,5 +1,10 @@
 import React, { useEffect, Fragment } from "react";
-import { useFetchHandler, useFirestore, useDiscogsApi } from "hooks";
+import {
+  useFetchHandler,
+  useFirestore,
+  useDiscogsApi,
+  useOfflineTracker
+} from "hooks";
 import { Link } from "react-router-dom";
 import { Album, AlbumDetails, AlbumProps } from "models";
 import { Cover, List, YoutubeVideo } from "components";
@@ -14,14 +19,19 @@ const firebaseSkeleton = new Album({
 
 const discogsSkeleton = new AlbumDetails({
   artists_sort: "Loading",
-  released: "Loading",
   extraartists: [...new Array(5)].map((item, index) => ({
     name: "Loading",
     role: "Loading"
   })),
   formats: [{ descriptions: ["Loading"] }],
   styles: ["Loading"],
-  labels: ["Loading"],
+  labels: [
+    {
+      name: "Loading",
+      catno: "Loading"
+    }
+  ],
+  released: "Loading",
   genres: ["Loading"],
   tracklist: [...new Array(10)].map((item, index) => ({
     position: `${index + 1}`,
@@ -35,6 +45,7 @@ const AlbumDetail: React.FC<AlbumProps> = ({ match }: AlbumProps) => {
   const { id } = params;
   const { fetchReleaseData } = useDiscogsApi();
   const { getAlbumData } = useFirestore();
+  const { isOnline } = useOfflineTracker();
   const discogsApi = useFetchHandler<AlbumDetails>(discogsSkeleton);
   const firebaseApi = useFetchHandler<Album>(firebaseSkeleton);
 
@@ -45,6 +56,9 @@ const AlbumDetail: React.FC<AlbumProps> = ({ match }: AlbumProps) => {
 
   if (!isLoading && (!discogsApi.apiData || !firebaseApi.apiData))
     return <div>Error</div>;
+
+  const discogsDataReady = discogsApi.apiData && !discogsApi.isLoading;
+  const shouldDisplayDiscogsData = isOnline || discogsDataReady;
 
   const {
     styles,
@@ -79,40 +93,45 @@ const AlbumDetail: React.FC<AlbumProps> = ({ match }: AlbumProps) => {
 
             <small className="small small--default">Album</small>
             <h3 className="heading heading--level4">{album}</h3>
+            {shouldDisplayDiscogsData && (
+              <Fragment>
+                <small className="small small--default">Release Date</small>
+                <h3 className="heading">{released}</h3>
 
-            <small className="small small--default">Release Date</small>
-            <h3 className="heading">{released}</h3>
-
-            <List title={"Genre"} array={styles} listClass="genre" />
-            <List
-              title={"CD Format"}
-              array={formats[0].descriptions}
-              listClass="format"
-            />
-            <List
-              title={"Catalog Number"}
-              array={labels}
-              listClass="catalog"
-              keys={["name", "catno"]}
-            />
+                <List title={"Genre"} array={styles} listClass="genre" />
+                <List
+                  title={"CD Format"}
+                  array={formats[0].descriptions}
+                  listClass="format"
+                />
+                <List
+                  title={"Catalog Number"}
+                  array={labels}
+                  listClass="catalog"
+                  keys={["name", "catno"]}
+                />
+              </Fragment>
+            )}
           </article>
         </aside>
         <article className="albumDetail__main">
           <YoutubeVideo album={album} artist={artist} id={youtubeVideoId} />
-          <article className="albumDetail__wrapper">
-            <List
-              title={"Tracklist"}
-              array={tracklist}
-              listClass={"trackList"}
-              keys={["position", "title", "duration"]}
-            />
-            <List
-              title={"Credits"}
-              array={extraartists}
-              listClass="artist"
-              keys={["role", "name"]}
-            />
-          </article>
+          {shouldDisplayDiscogsData && (
+            <article className="albumDetail__wrapper">
+              <List
+                title={"Tracklist"}
+                array={tracklist}
+                listClass={"trackList"}
+                keys={["position", "title", "duration"]}
+              />
+              <List
+                title={"Credits"}
+                array={extraartists}
+                listClass="artist"
+                keys={["role", "name"]}
+              />
+            </article>
+          )}
         </article>
       </section>
     </Fragment>

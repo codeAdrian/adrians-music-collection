@@ -30,13 +30,33 @@
 }
 
 .button--cta {
-  color: var(--color__gray--8);
-  background-color: var(--color__cta);
   padding: var(--spacing__vertical--n1) var(--spacing__horizontal--1);
+  background-color: var(--color__cta);
+  transition: background-color 0.5s ease;
+
+  &,
+  &:visited {
+    color: var(--color__gray--8);
+  }
+
+  &:hover,
+  &:active {
+    background-color: var(--color__cta--darker);
+  }
 }
 
 .button--link {
-  color: var(--color__cta);
+  transition: color 0.5s ease;
+
+  &,
+  &:visited {
+    color: var(--color__cta);
+  }
+
+  &:hover,
+  &:active {
+    color: var(--color__cta--darker);
+  }
 }
 
 .button--fixed {
